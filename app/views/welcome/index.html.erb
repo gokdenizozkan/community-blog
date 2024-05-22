@@ -1,3 +1,7 @@
 <h1>Welcome</h1>
 
-<%= link_to "See articles", articles_path if @article_count > 0 %>
+<% if @article_count > 0 %>
+	<%= link_to "See articles", articles_path %>
+<% else %>
+	<%= link_to "Create the very first article!", new_article_path %>
+<% end %>

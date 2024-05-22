@@ -1,24 +1,28 @@
-# README
+# Community Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A community blog to share highs and lows of your development journey. This project is developed for iWallet Ruby on Rails bootcamp capstone project.
 
-Things you may want to cover:
+![Demo of the project plays as a gif file.](.github/demo.gif)
 
-* Ruby version
+## Features
 
-* System dependencies
+- Post an article.
+- See articles of others.
 
-* Configuration
+## Getting Started
 
-* Database creation
+Make sure you have Ruby and Rails installed on your machine. Then;
 
-* Database initialization
+1. Clone this repository.
+2. Get into the project directory.
+3. Run the commands below, and you are ready to go:
+```bash
+bin/rails db:create db:migrate
+bin/rails server
+```
 
-* How to run the test suite
+When server starts, the blog will be available on http://127.0.0.1:3000/
 
-* Services (job queues, cache servers, search engines, etc.)
+## Versioning
 
-* Deployment instructions
-
-* ...
+SemVer is used for versioning on the `main` branch. For active development, see `dev` branch.

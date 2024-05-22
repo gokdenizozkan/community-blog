@@ -6,7 +6,7 @@
     <h1><%= @article.title %></h1>
   </header>
 
-  <%= @article.body %>
+  <%= sanitize @article.body %>
 
   <footer>
     <ul>
@@ -14,7 +14,8 @@
       <li><%= link_to "Destroy", article_path(@article), data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
-      } %></li>
+      } %></li><br>
+      <li><%= link_to "See other articles", articles_path %></li>
     </ul>
   </footer>
 </article>
