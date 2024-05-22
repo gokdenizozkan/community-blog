@@ -11,7 +11,7 @@ A community blog to share highs and lows of your development journey. This proje
 
 ## Getting Started
 
-Make sure you have Ruby and Rails installed on your machine. Then;
+Make sure you have Ruby, Rails, and PostgreSQL installed on your machine. Then;
 
 1. Clone this repository.
 2. Get into the project directory.
