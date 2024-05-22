@@ -1,11 +1,20 @@
-<h1><%= @article.title %></h1>
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+<article>
+  <header>
+    <h1><%= @article.title %></h1>
+  </header>
 
-<p><%= @article.body %></p>
+  <%= @article.body %>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Are you sure?"
-  } %></li>
-</ul>
+  <footer>
+    <ul>
+      <li><%= link_to "Edit", edit_article_path(@article) %></li>
+      <li><%= link_to "Destroy", article_path(@article), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %></li>
+    </ul>
+  </footer>
+</article>
