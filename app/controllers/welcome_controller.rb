@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
 	def index
-		@articles = Article.all
-		@article_count = @articles.length
+		@published_articles = Article.published
 	end
 end
