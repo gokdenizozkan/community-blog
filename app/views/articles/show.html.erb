@@ -9,13 +9,11 @@
   <%= @article.body %>
 
   <footer>
-    <ul>
-      <li><%= link_to "Edit", edit_article_path(@article) %></li>
-      <li><%= link_to "Destroy", article_path(@article), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %></li><br>
-      <li><%= link_to "See other articles", articles_path %></li>
-    </ul>
+    <%= link_to "Edit", edit_article_path(@article) unless :published %>
+    <%= link_to "Destroy", article_path(@article), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } unless :published %><br>
+    <%= link_to "See other articles", articles_path %>  
   </footer>
 </article>

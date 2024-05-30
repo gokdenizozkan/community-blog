@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
       if @article.update(article_params)
         format.html { redirect_to article_url(@article), notice: "Article updated successfuly." }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end

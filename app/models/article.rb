@@ -8,24 +8,24 @@ class Article < ApplicationRecord
   before_update :prevent_update_if_published
   before_destroy :prevent_destroy_if_published
 
-  def default_values
-    unless self.body.present?
-      self.body = "content will be here"
+  private
+    def default_values
+      unless self.body.present?
+        self.body = "content will be here"
+      end
     end
-  end
 
-  def prevent_update_if_published
-    if :published
-      puts "in if published"
-      errors.add(:base, 'Cannot update if it is published')
-      throw(:abort)
+    def prevent_update_if_published
+      if :published
+        errors.add :base, 'Cannot update if it is published'
+        throw :abort
+      end
     end
-  end
 
-  def prevent_destroy_if_published
-    if :published
-      errors.add :published, :not_allowed, message: "Cannot destroy if it is published"
-      throw :abort
+    def prevent_destroy_if_published
+      if :published
+        errors.add :base, 'Cannot destroy if it is published'
+        throw :abort
+      end
     end
-  end
 end
