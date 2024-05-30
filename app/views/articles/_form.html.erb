@@ -17,6 +17,9 @@
 
     <div>
         <%= form.check_box :published %>Published?<br>
+        <% article.errors.full_messages_for(:base).each do |message| %>
+            <p class="notice"><%= message %></p>
+        <% end %>
         <%= form.submit %>
     </div>
 <% end %>
