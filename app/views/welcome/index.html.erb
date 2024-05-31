@@ -5,6 +5,7 @@
   <% @published_articles.each do |article| %>
     <li>
       <%= link_to article.title, article %>
+      <%= time_tag article.created_at, "data-local": "time-ago" %>
     </li>
   <% end %>
 </ul>
