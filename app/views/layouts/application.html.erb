@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+  <nav>
+    <%= link_to "Home", root_path %>
+    <%= link_to "Articles", articles_path %>
+  </nav>
   <head>
     <title>Community Blog by Gökdeniz Özkan</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,4 +22,9 @@
       <%= yield %>
     </main>
   </body>
+
+  <footer>
+    This site is created by Gökdeniz Özkan with <3
+    All rights are reserved. Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
+  </footer>
 </html>
