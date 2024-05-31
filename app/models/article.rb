@@ -8,6 +8,13 @@ class Article < ApplicationRecord
   before_update :prevent_update_if_published
   before_destroy :prevent_destroy_if_published
 
+  def is_published_in_words
+    if published
+      return "Published"
+    end
+    "Not published"
+  end
+
   private
     def default_values
       unless self.body.present?
