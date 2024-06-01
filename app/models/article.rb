@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   before_destroy :prevent_destroy_if_published
 
   def is_published_in_words
-    if published
+    if self.published
       return "Published"
     end
     "Not published"
@@ -22,15 +22,27 @@ class Article < ApplicationRecord
       end
     end
 
+    def was_published?
+      if self.published_changed?
+        unless self.published
+          true
+        end
+      else
+        if self.published
+          true
+        end
+      end
+    end
+
     def prevent_update_if_published
-      if :published
+      if self.was_published?
         errors.add :base, 'Cannot update if it is published'
         throw :abort
       end
     end
 
     def prevent_destroy_if_published
-      if :published
+      if self.was_published?
         errors.add :base, 'Cannot destroy if it is published'
         throw :abort
       end

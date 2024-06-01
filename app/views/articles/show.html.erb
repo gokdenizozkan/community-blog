@@ -1,6 +1,7 @@
 <% if notice.present? %>
   <p class="notice"><%= notice %></p>
 <% end %>
+
 <article>
   <header>
     <h1><%= @article.title %></h1>
@@ -9,11 +10,11 @@
   <%= @article.body %>
 
   <footer>
-    <%= link_to "Edit", edit_article_path(@article) unless :published %>
+    <%= link_to "Edit", edit_article_path(@article) unless @article.published %>
     <%= link_to "Destroy", article_path(@article), data: {
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
-    } unless :published %><br>
+    } unless @article.published %><br>
     <%= link_to "See other articles", articles_path %>  
   </footer>
 </article>

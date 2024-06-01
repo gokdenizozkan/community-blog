@@ -2,3 +2,5 @@
 
 pin "application"
 pin "local-time" # @3.0.2
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.esm.js"
