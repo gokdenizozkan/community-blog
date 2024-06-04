@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   before_create :set_nickname
 
+  has_many :articles
+
   private
   def set_nickname
     self.nickname = self.email.split('@').first

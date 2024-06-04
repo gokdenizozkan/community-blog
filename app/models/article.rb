@@ -8,6 +8,8 @@ class Article < ApplicationRecord
   before_update :prevent_update_if_published
   before_destroy :prevent_destroy_if_published
 
+  belongs_to :user
+
   def is_published_in_words
     if self.published
       return "Published"
