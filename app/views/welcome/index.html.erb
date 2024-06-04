@@ -1,6 +1,6 @@
 <h1>Welcome</h1>
 
-<%= link_to "Write a new article!", new_article_path %>
+<%= link_to "Write a new article!", new_article_path if user_signed_in? %>
 <ul>
   <% @published_articles.each do |article| %>
     <li>
