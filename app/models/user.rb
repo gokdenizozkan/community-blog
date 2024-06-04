@@ -14,6 +14,8 @@ class User < ApplicationRecord
   before_create :set_nickname
 
   has_many :articles
+  has_many :votes
+  has_many :comments
 
   private
   def set_nickname

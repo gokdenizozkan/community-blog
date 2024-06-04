@@ -34,3 +34,46 @@ When server starts, the blog will be available on http://127.0.0.1:3000/
 ## Versioning
 
 SemVer is used for versioning on the `main` branch. For active development, see `dev` branch.
+
+## UML Diagram
+
+```mermaid
+classDiagram
+	User "1" --* "*" Article
+	User "1" --* "*" Vote
+	User "1" --* "*" Comment
+
+	Article "1" --* "*" Vote
+	Article "1" --* "*" Comment
+
+
+	class User {
+		-string nickname
+		-string email
+		-string password
+		-Article[] articles
+		-Vote[] votes
+		-Comment[] comments
+	}
+
+	class Article {
+		-string title
+		-string body
+		-User user
+		-Vote[] votes
+		-Comment[] comments
+	}
+
+	class Vote {
+		-User user
+		-Article article
+		-boolean up
+		-integer status
+	}
+
+	class Comment {
+		-User user
+		-Article article
+		-string body
+	}
+```
