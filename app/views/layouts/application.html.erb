@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <nav>
-    <%= link_to "Home", root_path %>
-    <%= link_to "Articles", articles_path %>
-  </nav>
   <head>
     <title>Community Blog by Gökdeniz Özkan</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -18,13 +14,37 @@
   </head>
 
   <body>
+    <header>
+        <nav>
+          <%= link_to "Home", root_path %>
+          <%= link_to "Articles", articles_path %>
+
+          <% if user_signed_in? %>
+            <%= link_to "Account", edit_user_registration_path %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "Sign Up", new_user_registration_path %>
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
+        </nav>
+    </header>
+
     <main>
+      <% if notice.present? %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      
+      <% if notice.present? %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+
       <%= yield %>
     </main>
-  </body>
 
-  <footer>
-    This site is created by Gökdeniz Özkan with <3
-    All rights are reserved. Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
-  </footer>
+    <footer>
+      Made by Gökdeniz Özkan with <3<br>
+      All rights are reserved.<br>
+      Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
+    </footer>
+  </body>
 </html>
