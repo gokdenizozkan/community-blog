@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_130658) do
     t.bigint "user_id", null: false
     t.bigint "article_id", null: false
     t.string "body"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
@@ -90,7 +91,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_130658) do
     t.bigint "user_id", null: false
     t.bigint "article_id", null: false
     t.boolean "up"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_votes_on_article_id"

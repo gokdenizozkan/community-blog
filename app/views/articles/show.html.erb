@@ -1,20 +1,29 @@
-<% if notice.present? %>
-  <p class="notice"><%= notice %></p>
-<% end %>
-
 <article>
   <header>
     <h1><%= @article.title %></h1>
+    <p>Written by: <%= @article.user.nickname %></p>
+    <p>Last updated at: <%= @article.updated_at %></p>
+    <div>
+      <%= button_to "+#{@upvote_count}", add_vote_path(vote: {up: true, article: @article, user: current_user}), disabled: !user_signed_in? %>
+      <%= button_to "-#{@downvote_count}", add_vote_path(vote: {up: false, article: @article, user: current_user}), disabled: !user_signed_in? %>
+    </div>
   </header>
 
-  <%= @article.body %>
+  <main>
+    <%= @article.body %>
+  </main>
 
   <footer>
-    <%= link_to "Edit", edit_article_path(@article) unless @article.published %>
-    <%= link_to "Destroy", article_path(@article), data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } unless @article.published %><br>
+    <% @upvote_count %>
+
+    <% if current_user == @article.user %>
+      <%= link_to "Edit", edit_article_path(@article) unless @article.published %>
+      <%= link_to "Destroy", article_path(@article), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } unless @article.published %><br>
+    <% end %>
+
     <%= link_to "See other articles", articles_path %>  
   </footer>
 </article>

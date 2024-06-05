@@ -8,7 +8,7 @@
   </header>
 
   <ul>
-    <% Article.published.each do |article| %>
+    <% Article.all.each do |article| %>
       <li>
         <%= link_to article.title, article %><br>
         <%= article.created_at %><br>

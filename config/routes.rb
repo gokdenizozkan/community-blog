@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :articles
+
+  post "/votes/add", to: "votes#add", as: :add_vote
 end

@@ -51,4 +51,4 @@ class Article < ApplicationRecord
       throw :abort
     end
   end
-en
+end

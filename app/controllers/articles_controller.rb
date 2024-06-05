@@ -7,6 +7,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @upvote_count = Vote.where(article: @article, up: true).count
+    @downvote_count = Vote.where(article: @article, up: false).count
   end
 
   def new
@@ -14,7 +16,8 @@ class ArticlesController < ApplicationController
   end 
 
   def create
-    @article = Article.new(article_params)
+    @article = Article.new article_params
+    @article.user = current_user
 
     respond_to do | format |
       if @article.save
