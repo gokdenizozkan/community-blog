@@ -10,9 +10,9 @@ export default class extends Controller {
   	const commentBodyId = event.params["body"];
   	
   	const form = document.getElementById(formId);
-  	form.classList.toggle("none");
+  	form.classList.toggle("hidden");
 
   	const commentBody = document.getElementById(commentBodyId);
-  	commentBody.classList.toggle("none");
+  	commentBody.classList.toggle("hidden");
   }
 }

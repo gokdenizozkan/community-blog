@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_article, only: [:update, :approve, :reject]
 	before_action :set_comment, only: [:edit, :update, :destroy]
-	before_action :set_article, only: [:update]
+	before_action :is_user_the_comment_owner?, only: [:update]
 
 	def new
 	  @comment = Comment.new params[:article_id]
@@ -20,8 +21,6 @@ class CommentsController < ApplicationController
 	end
 
 	def update
-		@comment = @article.comments.find params[:id]
-
 		respond_to do |format|
 			if @comment.update comment_params
 				format.html { redirect_to article_url @article, notice: 'Comment has been updated.' }
@@ -38,7 +37,6 @@ class CommentsController < ApplicationController
 	end
 
 	def approve
-		@article =  Article.find params[:article_id]
 		unless current_user == @article.user
 			return false # respond to ile değiştir
 		end
@@ -49,8 +47,7 @@ class CommentsController < ApplicationController
 		render :article
 	end
 
-	def approve
-		@article =  Article.find params[:article_id]
+	def reject
 		unless current_user == @article.user
 			return false # respond to ile değiştir
 		end
@@ -67,7 +64,7 @@ class CommentsController < ApplicationController
 	end
 
 	def set_comment
-	  @comment = Comment.find(params[:id])
+	  @comment = @article.comments.find params[:id]
 	end
 
 	def comment_params
@@ -76,5 +73,9 @@ class CommentsController < ApplicationController
 
 	def comment_approval_params
 		params.require(:comment).permit(:comment_id)
+	end
+
+	def is_user_the_comment_owner?
+		current_user == @comment.user
 	end
 end

@@ -1,69 +1,103 @@
 <article>
-  <header>
-    <h1><%= @article.title %></h1>
+  <header class="nes-container with-title">
+    <h1 class="title"><%= @article.title %></h1>
     <p>Written by: <%= @article.user.nickname %></p>
     <p>Last updated at: <%= @article.updated_at %></p>
-    <div>
-      <%= button_to "+#{@upvote_count}", add_vote_path(vote: {up: true, article: @article, user: current_user}), disabled: !user_signed_in? %>
-      <%= button_to "-#{@downvote_count}", add_vote_path(vote: {up: false, article: @article, user: current_user}), disabled: !user_signed_in? %>
+
+    <div id="vote-buttons" style="display: flex">
+      <div id="upvote">
+        <i class="nes-icon heart "></i>
+        <%= 
+          button_to "+#{@upvote_count}", 
+          add_vote_path(vote: {up: true, article: @article, user: current_user}), 
+          disabled: !user_signed_in? 
+        %>
+      </div>
+
+      <div id="downvote">
+        <i class="nes-icon close"></i>
+        <%= 
+          button_to "-#{@downvote_count}",
+          add_vote_path(vote: {up: false, article: @article, user: current_user}),
+          disabled: !user_signed_in?
+        %>
+      </div>
     </div>
   </header>
 
-  <main>
+  <main class="nes-container is-dark">
     <%= @article.body %>
   </main>
 
   <footer>
-    <% @upvote_count %>
-
-    <% if current_user == @article.user %>
-      <%= link_to "Edit", edit_article_path(@article) unless @article.published %>
-      <%= link_to "Destroy", article_path(@article), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } unless @article.published %><br>
+    <% if current_user == @article.user && !@article.published %>
+      <div class="nes-container with-title">
+        <h3 class="title">Article Settings</h3>
+        <%= link_to "Edit", edit_article_path(@article) %>
+        <%= link_to "Destroy", article_path(@article), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+      </div>
     <% end %>
 
     <%= link_to "See other articles", articles_path %>  
 
     <br><br>
-    <h2>Comments</h2>
-    <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build } if user_signed_in? %>
-
-    <%= "Be the first to comment!" if @approved_comments.empty? %> <%= link_to "Login to comment.", new_user_session_path unless user_signed_in? %>
-
-    <% @approved_comments.each do |comment| %>
-      <div>
-        <p><b><%= comment.user.nickname %></b></p>
-        <p><%= comment.body %></p>
+    <div class="nes-container with-title">
+      <h2 class="title">Comments</h2>
+      
+      <div id="new-comment" class="nes-container is-dark with-title">
+        <h3 class="title">New Comment</h3>
+        <%= link_to "Login to comment.", new_user_session_path unless user_signed_in? %>
+        
+        <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build } if user_signed_in? %>
       </div>
-    <% end %>
 
-    <% if user_signed_in? && @comments_of_current_user.any? %>
-      <h4>My Comments</h4>
-      <div>
-        <% @comments_of_current_user.each do |comment| %>
-            <div id="my-comment-content-<%= comment.id %>">
-              <div><%= comment.status %></div>
-              <div id="my-comment-body-<%= comment.id %>"><%= comment.body %></div>
+      <div id="approved-comments" class="nes-container with-title"> 
+        <h3 class="title">Approved Comments</h3>
+        <%= "Be the first to comment!" if @approved_comments.empty? %>
 
-              <div id="my-comment-edit-form-<%= comment.id %>" class="none">
-                <%= render partial: "comments/form", locals: { article: @article, comment: comment } %>
-              </div>
-              
-              <div id="my-comment-controls-<%= comment.id %>">
-                <%= button_to "Edit", nil, remote: true, data: {
-                  controller: 'comments',
-                  action: 'comments#toggleForm',
-                  comments_form_param: "my-comment-edit-form-#{comment.id}",
-                  comments_body_param: "my-comment-body-#{comment.id}",
-                } %>
-                <%= button_to "Destroy", nil, remote: true %>
-              </div>
-            </div>
+        <% @approved_comments.each_with_index do |comment, i| %>
+          <div class="nes-balloon from-<%= i % 2 == 0 ? 'left' : 'right' %>">
+            <p><b><%= comment.user.nickname %></b></p>
+            <p><%= comment.body %></p>
+          </div><br>
         <% end %>
       </div>
-    <% end %>
+
+      <div id="my-comments" class="nes-container with-title">
+        <% if user_signed_in? && @comments_of_current_user.any? %>
+          <h3 class="title">My Comments</h4>
+          <div>
+            <% @comments_of_current_user.each do |comment| %>
+              <div id="my-comment-content-<%= comment.id %>">
+                <div><%= comment.status %></div>
+                <div id="my-comment-body-<%= comment.id %>"><%= comment.body %></div>
+
+                <div id="my-comment-edit-form-<%= comment.id %>" class="hidden">
+                  <%= render partial: "comments/form", locals: { article: @article, comment: comment } %>
+                </div>
+                
+                <div id="my-comment-controls-<%= comment.id %>">
+                  <%= button_to "Edit", nil, remote: true, class: "nes-btn is-warning", data: {
+                    controller: 'comments',
+                    action: 'comments#toggleForm',
+                    comments_form_param: "my-comment-edit-form-#{comment.id}",
+                    comments_body_param: "my-comment-body-#{comment.id}",
+                  } %>
+                  <%= button_to "Destroy", nil, remote: true, class: "nes-btn is-error" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    
+
+    
 
     <% if user_signed_in? && current_user == @article.user && @pending_comments.any? %>
       <h4>Comments Pending Approval</h4>

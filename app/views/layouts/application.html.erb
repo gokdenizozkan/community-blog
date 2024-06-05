@@ -8,44 +8,48 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext" %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic"> -->
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" /> -->
     <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> -->
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header>
-        <nav>
-          <%= link_to "Home", root_path %>
-          <%= link_to "Articles", articles_path %>
+    <div class="nes-container is-centered">
+      <header>
+          <nav>
+            <%= link_to "Home", root_path %>
+            <%= link_to "Articles", articles_path %>
 
-          <% if user_signed_in? %>
-            <%= link_to "Account", edit_user_registration_path %>
-            <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-          <% else %>
-            <%= link_to "Sign Up", new_user_registration_path %>
-            <%= link_to "Login", new_user_session_path %>
-          <% end %>
-        </nav>
-    </header>
+            <% if user_signed_in? %>
+              <%= link_to "Account", edit_user_registration_path %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Sign Up", new_user_registration_path %>
+              <%= link_to "Login", new_user_session_path %>
+            <% end %>
+          </nav>
+      </header>
 
-    <main>
-      <% if notice.present? %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      
-      <% if notice.present? %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
+      <main>
+        <% if notice.present? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        
+        <% if notice.present? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
 
-      <%= yield %>
-    </main>
+        <%= yield %>
+      </main>
 
-    <footer>
-      Made by Gökdeniz Özkan with <3<br>
-      All rights are reserved.<br>
-      Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
-    </footer>
+      <footer>
+        Made by Gökdeniz Özkan with <3<br>
+        All rights are reserved.<br>
+        Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
+      </footer>
+    </div>
   </body>
 </html>
