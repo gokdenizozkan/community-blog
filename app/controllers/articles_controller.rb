@@ -13,7 +13,12 @@ class ArticlesController < ApplicationController
 
     if user_signed_in?
       @comments_of_current_user = Comment.where article: @article, user: current_user
+
+      if current_user == @article.user
+        @pending_comments = Comment.where article: @article, status: :pending
+      end
     end
+
   end
 
   def new

@@ -32,7 +32,14 @@
 
     <%= "Be the first to comment!" if @approved_comments.empty? %> <%= link_to "Login to comment.", new_user_session_path unless user_signed_in? %>
 
-    <% if user_signed_in? %>
+    <% @approved_comments.each do |comment| %>
+      <div>
+        <p><b><%= comment.user.nickname %></b></p>
+        <p><%= comment.body %></p>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? && @comments_of_current_user.any? %>
       <h4>My Comments</h4>
       <div>
         <ul>
@@ -42,6 +49,22 @@
               </li>
           <% end %>
         </ul>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? && current_user == @article.user && @pending_comments.any? %>
+      <h4>Comments Pending Approval</h4>
+      <div>
+        <% @pending_comments.each do |comment| %>
+          <ul>
+            <li><%= comment.user.nickname %></li>
+            <li><%= comment.body %></li>
+            <li>
+              <%= button_to "Approve", article_approve_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
+              <%= button_to "Reject", article_reject_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     <% end %>
   </footer>

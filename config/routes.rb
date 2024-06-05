@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
+    post "/comments/:id/approve", to:"comments#approve", as: :approve_comment
+    post "/comments/:id/reject", to:"comments#reject", as: :reject_comment
   end
 
   post "/votes/add", to: "votes#add", as: :add_vote

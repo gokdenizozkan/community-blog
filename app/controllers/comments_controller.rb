@@ -29,6 +29,30 @@ class CommentsController < ApplicationController
 	  redirect_back fallback_location: root_path
 	end
 
+	def approve
+		@article =  Article.find params[:article_id]
+		unless current_user == @article.user
+			return false # respond to ile değiştir
+		end
+
+		comment = Comment.find comment_approval_params[:comment_id]
+		comment.status = :approved
+		comment.save
+		render :article
+	end
+
+	def approve
+		@article =  Article.find params[:article_id]
+		unless current_user == @article.user
+			return false # respond to ile değiştir
+		end
+
+		comment = Comment.find comment_approval_params[:comment_id]
+		comment.status = :rejected
+		comment.save
+		render :article
+	end
+
 	private
 	def set_comment
 	  @comment = Comment.find(params[:id])
@@ -36,5 +60,9 @@ class CommentsController < ApplicationController
 
 	def comment_params
 	  params.require(:comment).permit(:body)
+	end
+
+	def comment_approval_params
+		params.require(:comment).permit(:comment_id)
 	end
 end
