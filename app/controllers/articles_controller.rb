@@ -10,6 +10,10 @@ class ArticlesController < ApplicationController
     @upvote_count = Vote.where(article: @article, up: true).count
     @downvote_count = Vote.where(article: @article, up: false).count
     @approved_comments = Comment.where article: @article, status: :approved
+
+    if user_signed_in?
+      @comments_of_current_user = Comment.where article: @article, user: current_user
+    end
   end
 
   def new

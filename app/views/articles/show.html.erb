@@ -26,8 +26,23 @@
 
     <%= link_to "See other articles", articles_path %>  
 
+    <br><br>
     <h2>Comments</h2>
-    <%= "Be the first to comment!" if @approved_comments.empty? %>
-    <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build }%>
+    <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build } if user_signed_in? %>
+
+    <%= "Be the first to comment!" if @approved_comments.empty? %> <%= link_to "Login to comment.", new_user_session_path unless user_signed_in? %>
+
+    <% if user_signed_in? %>
+      <h4>My Comments</h4>
+      <div>
+        <ul>
+          <% @comments_of_current_user.each do |comment| %>
+              <li>
+                <p><b><%= comment.status.capitalize %></b>: <%= comment.body %></p><br>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </footer>
 </article>
