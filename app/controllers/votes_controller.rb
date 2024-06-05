@@ -27,7 +27,6 @@ class VotesController < ApplicationController
 			create
 		end
 	end
-	    
 
 	private
 	def vote_params

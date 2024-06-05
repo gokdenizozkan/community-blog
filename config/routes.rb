@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "welcome#index"
 
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 
   post "/votes/add", to: "votes#add", as: :add_vote
 end

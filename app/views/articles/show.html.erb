@@ -25,5 +25,9 @@
     <% end %>
 
     <%= link_to "See other articles", articles_path %>  
+
+    <h2>Comments</h2>
+    <%= "Be the first to comment!" if @approved_comments.empty? %>
+    <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build }%>
   </footer>
 </article>

@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
   def show
     @upvote_count = Vote.where(article: @article, up: true).count
     @downvote_count = Vote.where(article: @article, up: false).count
+    @approved_comments = Comment.where article: @article, status: :approved
   end
 
   def new
