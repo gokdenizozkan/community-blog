@@ -42,13 +42,26 @@
     <% if user_signed_in? && @comments_of_current_user.any? %>
       <h4>My Comments</h4>
       <div>
-        <ul>
-          <% @comments_of_current_user.each do |comment| %>
-              <li>
-                <p><b><%= comment.status.capitalize %></b>: <%= comment.body %></p><br>
-              </li>
-          <% end %>
-        </ul>
+        <% @comments_of_current_user.each do |comment| %>
+            <div id="my-comment-content-<%= comment.id %>">
+              <div><%= comment.status %></div>
+              <div id="my-comment-body-<%= comment.id %>"><%= comment.body %></div>
+
+              <div id="my-comment-edit-form-<%= comment.id %>" class="none">
+                <%= render partial: "comments/form", locals: { article: @article, comment: comment } %>
+              </div>
+              
+              <div id="my-comment-controls-<%= comment.id %>">
+                <%= button_to "Edit", nil, remote: true, data: {
+                  controller: 'comments',
+                  action: 'comments#toggleForm',
+                  comments_form_param: "my-comment-edit-form-#{comment.id}",
+                  comments_body_param: "my-comment-body-#{comment.id}",
+                } %>
+                <%= button_to "Destroy", nil, remote: true %>
+              </div>
+            </div>
+        <% end %>
       </div>
     <% end %>
 
