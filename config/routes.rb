@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   post "/votes/add", to: "votes#add", as: :add_vote
+
+  get "/users/:id", to: "users/profiles#show", as: :user_profile
 end

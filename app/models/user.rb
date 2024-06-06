@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   @@nanoid_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  extend FriendlyId
+  friendly_id :nickname, use: [:slugged, :finders]
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

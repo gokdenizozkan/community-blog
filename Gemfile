@@ -69,3 +69,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "nanoid", "2.0.0"
+
+gem 'friendly_id', '~> 5.5.0'
