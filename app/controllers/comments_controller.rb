@@ -44,24 +44,28 @@ class CommentsController < ApplicationController
 
 	def approve
 		unless current_user == @article.user
-			return false # respond to ile değiştir
+			redirect_back fallback_location: root_path
 		end
-
+		puts "\n\n\n\n\n\n\n\nDEBUG\n\n\n\n\n\n\n\n"
 		comment = Comment.find comment_approval_params[:comment_id]
+		puts comment.id
+		puts comment_approval_params[:comment_id]
 		comment.status = :approved
-		comment.save
-		render :article
+		puts comment
+		puts comment.save!
+
+		redirect_back fallback_location: root_path
 	end
 
 	def reject
 		unless current_user == @article.user
-			return false # respond to ile değiştir
+			redirect_back fallback_location: root_path
 		end
 
 		comment = Comment.find comment_approval_params[:comment_id]
 		comment.status = :rejected
-		comment.save
-		render :article
+		comment.save!
+		redirect_back fallback_location: root_path
 	end
 
 	private

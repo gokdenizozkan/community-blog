@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
-  scope :published, -> { where(published: true) }
+  scope :published, -> { where published: true }
+  scope :not_published, -> { where published: false }
 
   validates :title, presence: true, length: { maximum: 140 }
   has_rich_text :body

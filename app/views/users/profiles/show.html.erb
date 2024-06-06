@@ -1,8 +1,9 @@
 <h1><%= @user.nickname %></h1>
 
 <div class="nes-container with-title">
-	<h2 class="title">Articles</h2>
+	<h2 class="title">Published Articles</h2>
 	<%= 'User has no published articles yet.' if @user.articles.empty? %>
+
 	<% @user.articles.published.each_with_index do |article, i| %>
 		<div class="nes-container <%= 'is-dark' if i % 2 == 0 %>">
 			<%= link_to article.title, article_path(article) %>
@@ -10,9 +11,44 @@
 	<% end %>
 </div>
 
+<div id="comments" class="nes-container with-title"> 
+  <h3 class="title">All Comments</h3>
+  <% @user.articles.each do |article| %>
+    <% article.comments.not_pending.each_with_index do |comment, i| %>
+      <% next unless comment.status.to_sym == :approved || @user_is_current_user %>
+      <div class="nes-balloon from-<%= i % 2 == 0 ? 'left' : 'right' %>">
+        <p><b><%= link_to article.title, article_path(article) %></b></p>
+        <p><b><%= comment.user.nickname %></b>: <%= comment.body %></p>
+
+        <% if @user_is_current_user && comment.status.to_sym == :rejected %>
+          <p><b><%= comment.status%></b>, only visible to you.</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
 <% if @user_is_current_user %>
+  <% if @user.articles.not_published.any? %>
+  	<div class="nes-container with-title is-dark">
+  		<h2 class="title">Draft Articles</h2>
+  		<% @user.articles.not_published.each do |article| %>
+  			<div class="nes-container is-dark">
+  				<%= link_to article.title, article_path(article) %>
+  			</div>
+  		<% end %>
+  	</div>
+  <% end %>
+
 	<div class="nes-container with-title">
 		<h2 class="title">Management Section</h2>
-
+    <p>If available, you can manage any pending comments made to your articles here.</p>
+		<%= render partial: 'comments/comments_pending_approval', locals: { pending_comments: @pending_comments } if @pending_comments.any? %>
 	</div>
+<% end %>
+
+
+<% if user_signed_in? && @comments_of_current_user.any? %>
+  <%= render partial: 'comments/comments_of_user', locals: { comments_of_current_user: @comments_of_current_user } %>
 <% end %>

@@ -7,6 +7,14 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    if user_signed_in?
+      @user_is_current_user = current_user == @article.user
+    end
+
+    unless @article.published
+      redirect_to root_path unless @user_is_current_user
+    end
+
     @upvote_count = Vote.where(article: @article, up: true).count
     @downvote_count = Vote.where(article: @article, up: false).count
     @approved_comments = Comment.where article: @article, status: :approved
@@ -14,7 +22,7 @@ class ArticlesController < ApplicationController
     if user_signed_in?
       @comments_of_current_user = Comment.where article: @article, user: current_user
 
-      if current_user == @article.user
+      if @user_is_current_user
         @pending_comments = Comment.where article: @article, status: :pending
       end
     end
@@ -61,7 +69,7 @@ class ArticlesController < ApplicationController
 
   private
   def set_article
-    @article = Article.find(params[:id])
+    @article = Article.find params[:id]
   end
 
   def article_params

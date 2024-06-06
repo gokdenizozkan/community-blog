@@ -1,0 +1,11 @@
+<div id="approved-comments" class="nes-container with-title"> 
+  <h3 class="title">Comments</h3>
+  <%= "No comments." if comments.empty? %>
+
+  <% comments.each_with_index do |comment, i| %>
+    <div class="nes-balloon from-<%= i % 2 == 0 ? 'left' : 'right' %>">
+      <p><b><%= comment.user.nickname %></b></p>
+      <p><%= comment.body %></p>
+    </div>
+  <% end %>
+</div>
