@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_article, only: [:update, :approve, :reject]
+	before_action :set_article, only: [:update, :destroy, :approve, :reject]
 	before_action :set_comment, only: [:edit, :update, :destroy]
-	before_action :is_user_the_comment_owner?, only: [:update]
 
 	def new
 	  @comment = Comment.new params[:article_id]
@@ -21,6 +20,10 @@ class CommentsController < ApplicationController
 	end
 
 	def update
+    unless current_user == @comment.user
+      return false
+    end
+
 		respond_to do |format|
 			if @comment.update comment_params
 				format.html { redirect_to article_url @article, notice: 'Comment has been updated.' }
@@ -31,8 +34,11 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-	  @comment.destroy!
+    unless current_user == @comment.user
+      return false
+    end
 
+	  @comment.destroy
 	  redirect_back fallback_location: root_path
 	end
 
@@ -73,9 +79,5 @@ class CommentsController < ApplicationController
 
 	def comment_approval_params
 		params.require(:comment).permit(:comment_id)
-	end
-
-	def is_user_the_comment_owner?
-		current_user == @comment.user
 	end
 end

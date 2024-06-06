@@ -6,7 +6,7 @@
 
     <div id="vote-buttons" style="display: flex">
       <div id="upvote">
-        <i class="nes-icon heart "></i>
+        <i class="nes-icon heart"></i>
         <%= 
           button_to "+#{@upvote_count}", 
           add_vote_path(vote: {up: true, article: @article, user: current_user}), 
@@ -71,7 +71,7 @@
           <h3 class="title">My Comments</h4>
           <div>
             <% @comments_of_current_user.each do |comment| %>
-              <div id="my-comment-content-<%= comment.id %>">
+              <div id="my-comment-content-<%= comment.id %>" class="nes-container">
                 <div><%= comment.status %></div>
                 <div id="my-comment-body-<%= comment.id %>"><%= comment.body %></div>
 
@@ -80,39 +80,43 @@
                 </div>
                 
                 <div id="my-comment-controls-<%= comment.id %>">
-                  <%= button_to "Edit", nil, remote: true, class: "nes-btn is-warning", data: {
-                    controller: 'comments',
-                    action: 'comments#toggleForm',
-                    comments_form_param: "my-comment-edit-form-#{comment.id}",
-                    comments_body_param: "my-comment-body-#{comment.id}",
-                  } %>
-                  <%= button_to "Destroy", nil, remote: true, class: "nes-btn is-error" %>
+                  <% if comment.status.to_sym == :pending %>
+                    <%= button_to "Edit", nil, remote: true, class: "nes-btn is-warning", data: {
+                      controller: 'comments',
+                      action: 'comments#toggleForm',
+                      comments_form_param: "my-comment-edit-form-#{comment.id}",
+                      comments_body_param: "my-comment-body-#{comment.id}",
+                    } %>
+                    <%= button_to "Destroy", article_comment_path(@article, comment), method: :delete, data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure?"
+                    }, class: "nes-btn is-error" %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
           </div>
         <% end %>
       </div>
-    </div>
 
-    
-
-    
-
-    <% if user_signed_in? && current_user == @article.user && @pending_comments.any? %>
-      <h4>Comments Pending Approval</h4>
-      <div>
-        <% @pending_comments.each do |comment| %>
-          <ul>
-            <li><%= comment.user.nickname %></li>
-            <li><%= comment.body %></li>
-            <li>
-              <%= button_to "Approve", article_approve_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
-              <%= button_to "Reject", article_reject_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
-            </li>
-          </ul>
+      <div id="comments-pending-approval" class="nes-container with-title">
+        <% if user_signed_in? && current_user == @article.user && @pending_comments.any? %>
+          <h3 class="title">Comments Pending Approval</h3>
+          <div>
+            <% @pending_comments.each do |comment| %>
+              <ul>
+                <li><%= comment.user.nickname %></li>
+                <li><%= comment.body %></li>
+                <li>
+                  <%= button_to "Approve", article_approve_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
+                  <%= button_to "Reject", article_reject_comment_path(article_id: @article.id, comment: { comment_id: comment.id }) %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
+      
   </footer>
 </article>

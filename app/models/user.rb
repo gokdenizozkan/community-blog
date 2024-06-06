@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates_length_of       :password, within: password_length, allow_blank: true # recommended
 
   before_create :set_nickname
+  before_update :prevent_update_if_nickname_exists?
 
   has_many :articles
   has_many :votes
@@ -27,5 +28,12 @@ class User < ApplicationRecord
 
   def nickname_exists?
     User.where(nickname: self.nickname).any?
+  end
+
+  def prevent_update_if_nickname_exists?
+    if nickname_exists?
+      errors.add :nickname, 'This nickname is already being used. Choose something else.'
+      throw :abort
+    end
   end
 end
