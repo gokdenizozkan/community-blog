@@ -3,7 +3,7 @@
 <div class="nes-container with-title">
 	<h2 class="title">Articles</h2>
 	<%= 'User has no published articles yet.' if @user.articles.empty? %>
-	<% @user.articles.each_with_index do |article, i| %>
+	<% @user.articles.published.each_with_index do |article, i| %>
 		<div class="nes-container <%= 'is-dark' if i % 2 == 0 %>">
 			<%= link_to article.title, article_path(article) %>
 		</div>
@@ -13,6 +13,6 @@
 <% if @user_is_current_user %>
 	<div class="nes-container with-title">
 		<h2 class="title">Management Section</h2>
-		
+
 	</div>
 <% end %>
