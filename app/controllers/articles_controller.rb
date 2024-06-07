@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action -> { authorize_against_current_user @article.user }, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.published

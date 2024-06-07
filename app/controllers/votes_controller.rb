@@ -1,10 +1,11 @@
 class VotesController < ApplicationController
 	before_action :authenticate_user!
+	before_action { authorize_against_current_user vote_params[:user_id] }
 
 	def create
 		@vote = Vote.new
 		@vote.user = current_user
-		@vote.article = Article.find vote_params[:article]
+		@vote.article = Article.find vote_params[:article_id]
 		@vote.up = vote_params[:up]
 		@vote.save
 
@@ -19,10 +20,7 @@ class VotesController < ApplicationController
 	end
 
 	def add
-		@vote = Vote.find_by article: vote_params[:article], user: vote_params[:user]
-		puts @vote
-		puts vote_params[:article]
-		puts vote_params[:user]
+		@vote = Vote.find_by article: vote_params[:article_id], user: vote_params[:user_id]
 		
 		if @vote.present?
 			update
@@ -33,6 +31,6 @@ class VotesController < ApplicationController
 
 	private
 	def vote_params
-    	params.require(:vote).permit(:user, :article, :up)
+    	params.require(:vote).permit(:user_id, :article_id, :up)
   	end
 end
