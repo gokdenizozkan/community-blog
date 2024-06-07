@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post "/comments/:id/reject", to:"comments#reject", as: :reject_comment
   end
 
+  resources :tags
+
   post "/votes/add", to: "votes#add", as: :add_vote
 
   get "/users/:id", to: "users/profiles#show", as: :user_profile

@@ -1,0 +1,9 @@
+<div>
+  <h1><%= @tag.name %></h1>
+
+  <% @tag.taggings.each do |tagging| %>
+    <div class="nes-container">
+      <h2><%= link_to tagging.article.title, article_path(tagging.article) %></h2>
+    </div>
+  <% end %>
+</div>

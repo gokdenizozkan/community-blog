@@ -3,6 +3,10 @@
     <h1 class="title"><%= @article.title %></h1>
     <p>Written by: <%= @article.user.nickname %></p>
     <p>Last updated at: <%= @article.updated_at %></p>
+    <p>Tags:</p>
+    <% @article.tags.each do |tag| %>
+      <%= link_to tag.name, tag %>
+    <% end %>      
 
     <div id="vote-buttons" style="display: flex">
       <div id="upvote">

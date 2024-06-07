@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action -> { authorize_against_current_user @article.user }, only: [:edit, :update, :destroy]
+  before_action -> { authorize_against_current_user @article.user.id }, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.published
@@ -35,8 +35,9 @@ class ArticlesController < ApplicationController
   end 
 
   def create
-    @article = Article.new article_params
+    @article = Article.new(article_params.except(:tags))
     @article.user = current_user
+    create_or_delete_articles_tags(@article, params[:article][:tags])
 
     respond_to do | format |
       if @article.save
@@ -51,8 +52,9 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    create_or_delete_articles_tags(@article, params[:article][:tags])
     respond_to do | format |
-      if @article.update(article_params)
+      if @article.update(article_params.except(:tags))
         format.html { redirect_to article_url(@article), notice: "Article updated successfuly." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,6 +76,14 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :body, :published)
+    params.require(:article).permit(:title, :body, :published, :tags)
+  end
+
+  def create_or_delete_articles_tags(article, tags)
+    article.taggings.destroy_all
+    tags = tags.strip.split ','
+    tags.each do |tag|
+      article.tags << Tag.find_or_create_by(name: tag)
+    end
   end
 end

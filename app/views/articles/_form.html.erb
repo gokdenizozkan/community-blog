@@ -1,25 +1,33 @@
 <%= form_with model: article do |form| %>
-    <div>
-        <%= form.label :title %><br>
-        <%= form.text_field :title %>
-        <% article.errors.full_messages_for(:title).each do |message| %>
-            <p class="notice"><%= message %></p>
-        <% end %>
-    </div>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+        <p class="notice"><%= message %></p>
+    <% end %>
+  </div>
 
-    <div>
-        <%= form.label :body %><br>
-        <%= form.rich_text_area :body %><br>
-        <% article.errors.full_messages_for(:body).each do |message| %>
-            <p class="notice"><%= message %></p>
-        <% end %>
-    </div>
+  <div>
+    <%= form.label :body %><br>
+    <%= form.rich_text_area :body %><br>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+        <p class="notice"><%= message %></p>
+    <% end %>
+  </div>
 
-    <div>
-        <%= form.check_box :published %>Published?<br>
-        <% article.errors.full_messages_for(:base).each do |message| %>
-            <p class="notice"><%= message %></p>
-        <% end %>
-        <%= form.submit %>
-    </div>
+  <div>
+    <%= form.check_box :published %>Published?<br>
+    <% article.errors.full_messages_for(:base).each do |message| %>
+        <p class="notice"><%= message %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :tags %>
+    <%= form.text_field :tags, value: article.tags.map(&:name).join(',') %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
