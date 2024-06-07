@@ -10,8 +10,8 @@ class Article < ApplicationRecord
   before_destroy :prevent_destroy_if_published
 
   belongs_to :user
-  has_many :votes
-  has_many :comments
+  has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def is_published_in_words
     if self.published

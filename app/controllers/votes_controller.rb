@@ -20,6 +20,9 @@ class VotesController < ApplicationController
 
 	def add
 		@vote = Vote.find_by article: vote_params[:article], user: vote_params[:user]
+		puts @vote
+		puts vote_params[:article]
+		puts vote_params[:user]
 		
 		if @vote.present?
 			update
