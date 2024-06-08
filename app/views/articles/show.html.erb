@@ -13,7 +13,7 @@
         <i class="nes-icon heart"></i>
         <%= 
           button_to "+#{@upvote_count}", 
-          add_vote_path(vote: {up: true, article_id: @article.id, user_id: current_user.id}), 
+          add_vote_path(vote: {up: true, article_id: @article.id, user_id: current_user&.id}), 
           disabled: !user_signed_in? 
         %>
       </div>
@@ -22,7 +22,7 @@
         <i class="nes-icon close"></i>
         <%= 
           button_to "-#{@downvote_count}",
-          add_vote_path(vote: {up: false, article_id: @article.id, user_id: current_user.id}),
+          add_vote_path(vote: {up: false, article_id: @article.id, user_id: current_user&.id}),
           disabled: !user_signed_in?
         %>
       </div>

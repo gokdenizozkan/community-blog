@@ -24,6 +24,7 @@
             <%= link_to "Articles", articles_path, class: 'nav-item' %>
 
             <% if user_signed_in? %>
+              <%= link_to "Write article!", new_article_path %>
               <%= link_to current_user.nickname, user_profile_path(current_user), class: 'nav-item' %>
               <%= link_to "Account Settings", edit_user_registration_path, class: 'nav-item' %>
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-item' %>

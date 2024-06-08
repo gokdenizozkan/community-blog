@@ -1,0 +1,10 @@
+.article-card {
+  max-width: 273px;
+  margin: 10px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: stretch;
+}

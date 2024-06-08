@@ -16,6 +16,7 @@
   <% @user.articles.each do |article| %>
     <% article.comments.not_pending.each_with_index do |comment, i| %>
       <% next unless comment.status.to_sym == :approved || @user_is_current_user %>
+      
       <div class="nes-balloon from-<%= i % 2 == 0 ? 'left' : 'right' %>">
         <p><b><%= link_to article.title, article_path(article) %></b></p>
         <p><b><%= comment.user.nickname %></b>: <%= comment.body %></p>
