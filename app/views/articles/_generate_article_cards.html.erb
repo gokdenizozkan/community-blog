@@ -1,0 +1,10 @@
+<% articles.each do |article| %>
+  <div class="article-card nes-container with-title">
+    <div class="title">
+      <%= link_to article.user.nickname, user_profile_path(article.user) %><br>
+      <%= time_tag article.created_at, 'data-local': 'time-ago' %>
+    </div>
+    
+    <%= link_to article.title, article %>
+  </div>
+<% end %>

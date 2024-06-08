@@ -1,19 +1,9 @@
-<article>
-  <header>
-    <h1>Articles</h1>
-  </header>
+<div class="centered-items">
+  <h1 class="centered-text">Articles</h1>
 
-  <ul>
-    <% Article.published.each do |article| %>
-      <li>
-        <%= link_to article.title, article %><br>
-        <%= article.created_at %><br>
-        <%= article.is_published_in_words %>
-      </li>
-    <% end %>
-  </ul>
-
-  <footer>
-    <%= link_to "New Article", new_article_path %>
-  </footer>
-</article>
+  <%= link_to "Write the very first article!", new_article_path if @articles.empty? %>
+  
+  <div class="article-cards">
+    <%= render partial: 'articles/generate_article_cards', locals: { articles: @articles } %>
+  </div>
+</div>
