@@ -7,6 +7,14 @@ A community blog to share highs and lows of your development journey. This proje
 ^ A quick look to all criteria asked in Homework #2
 
 ## Features
+v0.9.0
+- User authentication & authorization
+- Changeable nicknames
+- Tags have articles, articles have tags!
+- To comment or not to comment, that is the question.
+- Press on the thumbs up button if you liked this video...
+- We are alive! https://community-blog.gokdenizozkan.com/
+
 v0.3.0
 - Publish an article to make it accessable.
 - Published articles cannot be modified nor de-published again.
@@ -45,6 +53,10 @@ classDiagram
 
 	Article "1" --* "*" Vote
 	Article "1" --* "*" Comment
+	Article "1" --* "*" Tagging
+
+	Tag "1" --* "*" Tagging
+
 
 
 	class User {
@@ -62,6 +74,7 @@ classDiagram
 		-User user
 		-Vote[] votes
 		-Comment[] comments
+		-Tagging[] taggings
 	}
 
 	class Vote {
@@ -75,5 +88,15 @@ classDiagram
 		-User user
 		-Article article
 		-string body
+	}
+
+	class Tag {
+		-string name
+		-Tagging[] taggings
+	}
+
+	class Tagging {
+		-Artile article
+		-Tag tag
 	}
 ```
