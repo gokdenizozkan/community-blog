@@ -24,6 +24,7 @@
 
   <div>
     <%= form.label :tags %>
+    <p>Separate tags with comma, e.g. language,english,etymology</p>
     <%= form.text_field :tags, value: article.tags.map(&:name).join(',') %>
   </div>
 
