@@ -75,8 +75,8 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: community_blog_production
-  username: community_blog
+  database: <%= ENV["COMMUNITY_BLOG_DATABASE"] %>
+  username: <%= ENV["COMMUNITY_BLOG_DATABASE_USERNAME"] %>
   password: <%= ENV["COMMUNITY_BLOG_DATABASE_PASSWORD"] %>
 
 #

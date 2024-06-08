@@ -17,19 +17,19 @@
   </head>
 
   <body>
-    <div class="nes-container is-centered">
-      <header>
-          <nav>
-            <%= link_to "Home", root_path %>
-            <%= link_to "Articles", articles_path %>
+    <div class="col-container nes-container">
+      <header class="section-border">
+          <nav class="nav-container">
+            <%= link_to "Home", root_path, class: 'nav-item' %>
+            <%= link_to "Articles", articles_path, class: 'nav-item' %>
 
             <% if user_signed_in? %>
-              <%= link_to current_user.nickname, user_profile_path(current_user) %>
-              <%= link_to "Account Settings", edit_user_registration_path %>
-              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+              <%= link_to current_user.nickname, user_profile_path(current_user), class: 'nav-item' %>
+              <%= link_to "Account Settings", edit_user_registration_path, class: 'nav-item' %>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-item' %>
             <% else %>
-              <%= link_to "Sign Up", new_user_registration_path %>
-              <%= link_to "Login", new_user_session_path %>
+              <%= link_to "Sign Up", new_user_registration_path, class: 'nav-item' %>
+              <%= link_to "Login", new_user_session_path, class: 'nav-item' %>
             <% end %>
           </nav>
       </header>
@@ -39,17 +39,49 @@
           <p class="notice"><%= notice %></p>
         <% end %>
         
-        <% if notice.present? %>
-          <p class="notice"><%= notice %></p>
+        <% if alert.present? %>
+          <p class="alert"><%= alert %></p>
         <% end %>
 
         <%= yield %>
       </main>
 
-      <footer>
-        Made by Gökdeniz Özkan with <3<br>
-        All rights are reserved.<br>
-        Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
+      <footer class="footer-container section-border pad-top">
+        <section class="icon-list footer-section">
+          <!-- linkedin -->
+          <a href="https://linkedin.com/in/gokdenizozkan">
+            <i class="nes-icon linkedin is-medium"></i>
+          </a>
+
+          <!-- github -->
+          <a href="https://github.com/gokdenizozkan">
+            <i class="nes-icon github is-medium"></i>
+          </a>
+
+          <!-- medium -->
+          <a href="https://medium.com/@gokdenizozkan">
+            <i class="nes-icon medium is-medium"></i>
+          </a>
+
+          <!-- youtube -->
+          <a href="https://youtube.com/GökdenizÖzkan">
+            <i class="nes-icon youtube is-medium"></i>
+          </a>
+
+          <!-- twitter -->
+          <a href="https://x.com/gokdenizzkn">
+            <i class="nes-icon twitter is-medium"></i>
+          </a>
+        </section>
+
+        <section class="footer-container">
+          <p>
+            All rights are reserved.
+          </p>
+          <p>
+            Developed as a capstone project for iWallet Ruby on Rails Bootcamp.
+          </p>
+        </section>
       </footer>
     </div>
   </body>

@@ -14,6 +14,75 @@
  *= require_self
  */
 
+* {
+	font-smooth: never;
+	-webkit-font-smoothing : none;
+}
+
 .hidden {
 	display: none;
+}
+
+/* general */
+.col-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.section-border {
+	border-style: outset;
+}
+
+.footer-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+
+	align-items: center;
+}
+
+.pad-top {
+	padding-top: 15px;
+}
+
+.footer-section {
+	align-items: center;
+	justify-content: space-around;
+}
+
+/* flashes */
+.notice {
+	background-color: cyan, ;
+	color: black;
+}
+
+.alert {
+	background-color: red;
+	color: black;
+}
+
+
+/* nav */
+.nav-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+}
+
+.nav-item {
+	color: black;
+	font-family: fantasy;
+	border-style: dotted;
+}
+
+.nav-item:hover {
+	color: pink;
 }
