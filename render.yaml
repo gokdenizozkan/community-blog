@@ -1,7 +1,7 @@
 databases:
   - name: communityblog
     databaseName: communityblog
-    user: admin
+    user: communityblog
     plan: free
 
 services:
