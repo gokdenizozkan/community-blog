@@ -6,4 +6,6 @@
   <div class="article-cards">
     <%= render partial: 'articles/generate_article_cards', locals: { articles: @published_articles } %>
   </div>
+
+  <%= button_to "Write your own!", new_article_path, class: 'nes-btn' if user_signed_in? && @published_articles.any? %>
 </div>
