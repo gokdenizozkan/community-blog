@@ -54,7 +54,7 @@
 
   <% else %>
 
-    <% if @comments_of_current_user.any? %>
+    <% if user_signed_in? && @comments_of_current_user.any? %>
       <div class="nes-container with-title">
         <h3 class="title">Comments I Made to <%= @profile_user.nickname.capitalize %></h3>
         <%= render partial: 'comments/generate_comments', locals: { comments: @comments_of_current_user, allow_comment_controls: true } %>
