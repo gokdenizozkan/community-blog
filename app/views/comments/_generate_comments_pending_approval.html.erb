@@ -1,0 +1,18 @@
+<div>
+  <% pending_comments.each do |comment| %>
+    <div class="nes-container divide-to-columns">
+      <div class="content">
+        <p><b><%= link_to comment.article.title, article_path(comment.article) %></b></p>
+        <p><%= link_to comment.user.nickname, user_profile_path(comment.user) %> said:</p>
+        <p>"<%= comment.body %>"</p>
+      </div>
+
+      <div class="controls">
+        <div id="comments-pending-approval-controls" class="buttons-column">
+            <%= button_to "Approve", article_approve_comment_path(article_id: comment.article.id, comment: { comment_id: comment.id }), class: 'nes-btn is-success button-size-restricted' %>
+            <%= button_to "Reject", article_reject_comment_path(article_id: comment.article.id, comment: { comment_id: comment.id }), class: 'nes-btn is-error button-size-restricted' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

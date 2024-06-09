@@ -61,6 +61,35 @@
 	justify-content: space-around;
 }
 
+.buttons-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+.buttons-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;	
+}
+
+.button-size-restricted {
+	width: 85px;
+	height: 45px;
+}
+
+.divide-to-columns {
+	display: flex;
+	flex-direction: row;
+	gap: 15px;
+}
+
 /* flashes */
 .notice {
 	background-color: cyan, ;

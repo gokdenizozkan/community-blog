@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_is_current_user, only: [:show]
   before_action -> { authorize_against_current_user @article.user.id }, only: [:edit, :update, :destroy]
 
   def index
@@ -8,10 +9,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    if user_signed_in?
-      @user_is_current_user = current_user == @article.user
-    end
-
     unless @article.published
       redirect_to root_path unless @user_is_current_user
     end
@@ -20,14 +17,7 @@ class ArticlesController < ApplicationController
     @downvote_count = Vote.where(article: @article, up: false).count
     @approved_comments = Comment.where article: @article, status: :approved
 
-    if user_signed_in?
-      @comments_of_current_user = Comment.where article: @article, user: current_user
-
-      if @user_is_current_user
-        @pending_comments = Comment.where article: @article, status: :pending
-      end
-    end
-
+    set_comments if user_signed_in?
   end
 
   def new
@@ -84,6 +74,20 @@ class ArticlesController < ApplicationController
     tags = tags.strip.split ','
     tags.each do |tag|
       article.tags << Tag.find_or_create_by(name: tag)
+    end
+  end
+
+  def set_user_is_current_user
+    if user_signed_in?
+      @user_is_current_user = current_user == @article.user
+    end
+  end
+
+  def set_comments
+    @comments_of_current_user = Comment.where article: @article, user: current_user
+
+    if @user_is_current_user
+      @pending_comments = Comment.where article: @article, status: :pending
     end
   end
 end

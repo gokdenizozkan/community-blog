@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: password_length, allow_blank: true
 
-  before_create :set_nickname
+  before_validation :set_nickname
   before_update :prevent_update_if_nickname_exists?
 
   has_many :articles, dependent: :destroy
