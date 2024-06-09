@@ -24,7 +24,3 @@ class Users::ProfilesController < ApplicationController
     @profile_belongs_to_current_user = current_user.id == @profile_user&.id.to_i if user_signed_in?
   end
 end
-
-
-# user_is_current_user -> profile_belongs_to_current_user
-# user -> profile_user
