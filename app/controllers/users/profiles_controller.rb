@@ -10,7 +10,7 @@ class Users::ProfilesController < ApplicationController
         article.comments.each do |comment|
           @pending_comments << comment if comment.status.to_sym == :pending
 
-          if !(@profile_belongs_to_current_user) && comment.user.id == current_user.to_i
+          if !(@profile_belongs_to_current_user) && comment.user.id == current_user.id.to_i
             @comments_of_current_user << comment
           end
         end
