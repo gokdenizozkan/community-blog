@@ -6,21 +6,25 @@ class Users::ProfilesController < ApplicationController
       @pending_comments = []
       @comments_of_current_user = []
 
-      @user.articles.published.each do |article|
+      @profile_user.articles.published.each do |article|
         article.comments.each do |comment|
           @pending_comments << comment if comment.status.to_sym == :pending
-        end
-      end
 
-      @user.comments.each do |comment|
-        @comments_of_current_user << comment if comment.user == current_user
+          if !(@profile_belongs_to_current_user) && comment.user.id == current_user.to_i
+            @comments_of_current_user << comment
+          end
+        end
       end
     end
   end
 
   private
   def set_user
-    @user = User.find params[:id]
-    @user_is_current_user = current_user.id == @user&.id.to_i if user_signed_in?
+    @profile_user = User.find params[:id]
+    @profile_belongs_to_current_user = current_user.id == @profile_user&.id.to_i if user_signed_in?
   end
 end
+
+
+# user_is_current_user -> profile_belongs_to_current_user
+# user -> profile_user

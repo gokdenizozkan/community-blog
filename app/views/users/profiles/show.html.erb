@@ -1,10 +1,10 @@
-<h1><%= @user.nickname %></h1>
+<h1><%= @profile_user.nickname %></h1>
 
 <div class="nes-container with-title">
 	<h2 class="title">Published Articles</h2>
-	<%= 'User has no published articles yet.' if @user.articles.empty? %>
+	<%= 'User has no published articles yet.' if @profile_user.articles.empty? %>
 
-	<% @user.articles.published.each_with_index do |article, i| %>
+	<% @profile_user.articles.published.each_with_index do |article, i| %>
 		<div class="nes-container <%= 'is-dark' if i % 2 == 0 %>">
 			<%= link_to article.title, article_path(article) %>
 		</div>
@@ -16,9 +16,11 @@
 
   <div class="nes-container with-title">
     <h3 class="title">Received Comments</h3>
-    <% @user.articles.each do |article| %>
+
+    <% @profile_user.articles.each do |article| %>
       <% article.comments.not_pending.each_with_index do |comment, i| %>
-        <% unless @user_is_current_user %>
+
+        <% unless @profile_belongs_to_current_user %>
           <% next unless comment.status.to_sym == :approved %>
         <% end %>
         
@@ -26,16 +28,16 @@
           <p><b><%= link_to article.title, article_path(article) %></b></p>
           <p><b><%= comment.user.nickname %></b>: <%= comment.body %></p>
 
-          <% if @user_is_current_user && comment.status.to_sym == :rejected %>
+          <% if @profile_belongs_to_current_user && comment.status.to_sym == :rejected %>
             <p><b><%= comment.status%></b>, only visible to you.</p>
           <% end %>
         </div>
       <% end %>
     <% end %>
   </div>
-  
 
-  <% if @user_is_current_user %>
+  <% if @profile_belongs_to_current_user %>
+
     <% if @pending_comments.any? %>
       <div class="nes-container with-title">
         <h3 class="title">Received Comment Management</h3>
@@ -43,26 +45,37 @@
       </div>
     <% end %>
 
+    <% if @profile_user.comments.any? %>
+      <div class="nes-container with-title">
+        <h3 class="title">My Comments</h3>
+        <%= render partial: 'comments/generate_comments', locals: { comments: @profile_user.comments, allow_comment_controls: true } %>
+      </div>
+    <% end %>
+
+  <% else %>
 
     <% if @comments_of_current_user.any? %>
       <div class="nes-container with-title">
-        <h3 class="title">My Comments</h3>
-        <%= render partial: 'comments/generate_comments_of_current_user', locals: { comments_of_current_user: @comments_of_current_user } %>
+        <h3 class="title">Comments I Made to <%= @profile_user.nickname.capitalize %></h3>
+        <%= render partial: 'comments/generate_comments', locals: { comments: @comments_of_current_user, allow_comment_controls: true } %>
       </div>
     <% end %>
+
   <% end %>
 </div>
 
-<% if @user_is_current_user %>
-  <% if @user.articles.not_published.any? %>
+<% if @profile_belongs_to_current_user %>
+
+  <% if @profile_user.articles.not_published.any? %>
   	<div class="nes-container with-title is-dark">
   		<h2 class="title">Draft Articles</h2>
 
-  		<% @user.articles.not_published.each do |article| %>
+  		<% @profile_user.articles.not_published.each do |article| %>
   			<div class="nes-container is-dark">
   				<%= link_to article.title, article_path(article) %>
   			</div>
   		<% end %>
   	</div>
+
   <% end %>
 <% end %>

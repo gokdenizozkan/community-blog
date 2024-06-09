@@ -1,0 +1,30 @@
+<div>
+  <% comments.each do |comment| %>
+    <div id="comment-content-<%= comment.id %>" class="nes-container">
+      <div><%= link_to comment.article.title, article_path(comment.article) %></div>
+      <div><%= comment.status %></div>
+      <div id="comment-body-<%= comment.id %>"><%= comment.body %></div>
+
+      <% if allow_comment_controls %>
+        <div id="comment-edit-form-<%= comment.id %>" class="hidden">
+          <%= render partial: "comments/form", locals: { article: comment.article, comment: comment } %>
+        </div>
+        
+        <div id="comment-controls-<%= comment.id %>">
+          <% if comment.status.to_sym == :pending %>
+            <%= button_to "Edit", nil, remote: true, class: "nes-btn is-warning", data: {
+              controller: 'comments',
+              action: 'comments#toggleForm',
+              comments_form_param: "comment-edit-form-#{comment.id}",
+              comments_body_param: "comment-body-#{comment.id}",
+            } %>
+            <%= button_to "Destroy", article_comment_path(comment.article, comment), method: :delete, data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            }, class: "nes-btn is-error" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
