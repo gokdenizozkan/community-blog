@@ -2,9 +2,9 @@
 
 A community blog to share highs and lows of your development journey. This project is developed for iWallet Ruby on Rails bootcamp capstone project.
 
-![Demo of the project plays as a gif file.](.github/demo-hw2.gif)
+<a href="https://youtu.be/-Qccqw0K3Zw"><img alt="kısa tanıtım 3. ödev ister youtube thumbnail" src=".github/odev-tanitimi-3-thumbnail.gif" width="600px"></a>
 
-^ A quick look to all criteria asked in Homework #2
+^ A quick look to all criteria asked in Homework #3, watch here: [https://youtu.be/-Qccqw0K3Zw](https://youtu.be/-Qccqw0K3Zw)
 
 ## Features
 v0.9.0
