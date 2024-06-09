@@ -1,10 +1,9 @@
 class User < ApplicationRecord
-  @@nanoid_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
   extend FriendlyId
   friendly_id :nickname, use: [:slugged, :finders]
+
+  @@nanoid_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
   
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -22,6 +21,8 @@ class User < ApplicationRecord
 
   private
   def set_nickname
+    return if self.persisted?
+
     self.nickname = self.email.split('@').first
     while nickname_exists?
       self.nickname = "#{self.nickname}_#{Nanoid.generate(size: 6, alphabet: @@nanoid_alphabet)}"
@@ -37,5 +38,9 @@ class User < ApplicationRecord
       errors.add :nickname, 'This nickname is already being used. Choose something else.'
       throw :abort
     end
+  end
+
+  def should_generate_new_friendly_id?
+    nickname.blank? || self.nickname_changed?
   end
 end
