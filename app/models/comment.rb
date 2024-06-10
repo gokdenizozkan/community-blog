@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
   scope :not_pending, -> { where.not status: :pending }
+  scope :approved, -> { where status: :approved }
 
   enum :status, {rejected: 0, approved: 1, pending: 2}, default: :pending
 
