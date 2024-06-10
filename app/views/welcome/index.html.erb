@@ -1,5 +1,9 @@
 <div class="centered-items">
   <h1 class="centered-text">Welcome</h1>
+
+  <div id="search">
+    <%= render partial: 'articles/search' %>
+  </div>
   
   <%= link_to "Write the very first article!", new_article_path if @published_articles.empty? %>
 

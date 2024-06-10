@@ -1,12 +1,12 @@
 <%= form_with model: [article, comment] do |form| %>
-    <div>
-        <%= form.text_field :body, class: "nes-input" %><br>
-        <% article.errors.full_messages_for(:body).each do |message| %>
-            <p class="notice"><%= message %></p>
-        <% end %>
-    </div>
+  <div>
+    <%= form.text_field :body, class: "nes-input" %><br>
+      <% article.errors.full_messages_for(:body).each do |message| %>
+          <p class="notice"><%= message %></p>
+    <% end %>
+  </div>
 
-    <div>
-        <%= form.submit class: "nes-btn" %>
-    </div>
+  <div>
+    <%= form.submit class: "nes-btn" %>
+  </div>
 <% end %>

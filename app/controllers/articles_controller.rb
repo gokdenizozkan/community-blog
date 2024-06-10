@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :set_user_is_current_user, only: [:show]
   before_action -> { authorize_against_current_user @article.user.id }, only: [:edit, :update, :destroy]
@@ -60,6 +60,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # def search
+  #   query = '';
+  #   if search_params[:tags].present?
+  #     query = "%#{search_params[:query]}%"
+  #     tags_query = "%#{search_params[:tags]}%"
+  #     #@articles = Article.joins(:tags).where("title LIKE ? OR tags LIKE ?", query, tags_query)
+  #   else
+  #     query = "%#{search_params[:query]}%"
+  #     @articles = Article.references(:taggings, :tags).includes(:tags).where('title LIKE ? OR tags.name LIKE ?', query, query)
+  #   end
+
+  def search
+    query = "%#{search_params[:query]}%"
+    @articles = Article.references(:taggings, :tags).includes(:tags).where('title LIKE ? OR tags.name LIKE ?', query, query)
+
+    respond_to do | format |
+      format.html { render template: 'articles/search_results', locals: { articles: @articles, query: search_params[:query] }}
+    end
+  end
+
   private
   def set_article
     @article = Article.find params[:id]
@@ -67,6 +87,10 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body, :published, :tags)
+  end
+
+  def search_params
+    params.permit(:query, :tags)
   end
 
   def create_or_delete_articles_tags(article, tags)
