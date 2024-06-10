@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
 
   def search
     query = "%#{search_params[:query]}%"
-    @articles = Article.references(:taggings, :tags).includes(:tags).where('title LIKE ? OR tags.name LIKE ?', query, query)
+    @articles = Article.references(:taggings, :tags).includes(:tags).where('published = true AND (title LIKE ? OR tags.name LIKE ?)', query, query)
 
     respond_to do | format |
       format.html { render template: 'articles/search_results', locals: { articles: @articles, query: search_params[:query] }}
