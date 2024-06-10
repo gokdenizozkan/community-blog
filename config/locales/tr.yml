@@ -1,0 +1,16 @@
+tr:
+  model:
+    article:
+      title: Başlık
+      body: Gövde
+      published: Yayımlandı
+    tag:
+      name: Etiket
+    shared:
+      tag: Etiket
+      tags: Etiketler
+
+  view:
+    article:
+      form:
+        tag_info: Etiketleri virgülle ayırın, ör. dil,ingilizce,etimoloji

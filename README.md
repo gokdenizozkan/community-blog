@@ -100,3 +100,7 @@ classDiagram
 		-Tag tag
 	}
 ```
+
+## 3rd Parties
+
+Turkish Localization for Devise was taken from https://gist.github.com/cihad/1564962
