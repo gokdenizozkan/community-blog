@@ -1,0 +1,7 @@
+en:
+  views:
+    article:
+      form:
+        tagging_info: Separate tags with comma, e.g. language,english,etymology
+      index:
+        if_articles_empty: Write the very first article!

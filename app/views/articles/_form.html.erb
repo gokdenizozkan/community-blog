@@ -24,7 +24,7 @@
 
   <div>
     <%= form.label :tags %>
-    <p><%= t 'model.shared.tag' %></p>
+    <p><%= t 'model.shared.tags' %></p>
     <%= form.text_field :tags, value: article.tags.map(&:name).join(',') %>
   </div>
 

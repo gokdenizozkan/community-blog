@@ -1,0 +1,5 @@
+en:
+  models:
+    vote:
+      up: Upvote
+      down: Downvote

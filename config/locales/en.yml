@@ -28,11 +28,6 @@
 #       enabled: "ON"
 
 en:
-  model:
-    article:
-      title: Title
-      body: Body
-      published: Published
     tag:
       name: Name
     shared:
