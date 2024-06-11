@@ -1,5 +1,7 @@
 class Users::ProfilesController < ApplicationController
+  layout 'application'
   before_action :set_user
+  before_action :user_params, only: [:update_nickname]
 
   def show
     if user_signed_in?
@@ -18,9 +20,26 @@ class Users::ProfilesController < ApplicationController
     end
   end
 
+  def edit_nickname
+  end
+
+  def update_nickname
+    redirect_to root_path unless @profile_belongs_to_current_user
+    
+    if @profile_user.nickname == user_params[:nickname] || @profile_user.update user_params
+      redirect_to user_profile_path(@profile_user), notice: "Nickname updated successfully."
+    else
+      render :edit_nickname, status: :unprocessable_entity
+    end
+  end
+
   private
   def set_user
     @profile_user = User.find params[:id]
-    @profile_belongs_to_current_user = current_user.id == @profile_user&.id.to_i if user_signed_in?
+    @profile_belongs_to_current_user = user_signed_in? && current_user.id == @profile_user&.id.to_i
+  end
+
+  def user_params
+    params.require(:user).permit(:nickname)
   end
 end

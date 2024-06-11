@@ -60,17 +60,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # def search
-  #   query = '';
-  #   if search_params[:tags].present?
-  #     query = "%#{search_params[:query]}%"
-  #     tags_query = "%#{search_params[:tags]}%"
-  #     #@articles = Article.joins(:tags).where("title LIKE ? OR tags LIKE ?", query, tags_query)
-  #   else
-  #     query = "%#{search_params[:query]}%"
-  #     @articles = Article.references(:taggings, :tags).includes(:tags).where('title LIKE ? OR tags.name LIKE ?', query, query)
-  #   end
-
   def search
     query = "%#{search_params[:query]}%"
     @articles = Article.references(:taggings, :tags).includes(:tags).where('published = true AND (title LIKE ? OR tags.name LIKE ?)', query, query)

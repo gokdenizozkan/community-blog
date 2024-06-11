@@ -1,11 +1,10 @@
 class User < ApplicationRecord
+  @@nanoid_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
   extend FriendlyId
   friendly_id :nickname, use: [:slugged, :finders]
-
-  @@nanoid_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
   
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+  devise :database_authenticatable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:github]
 
   validates_presence_of     :email 
@@ -14,21 +13,18 @@ class User < ApplicationRecord
   validates_length_of       :password, within: password_length, allow_blank: true
 
   before_validation :set_nickname
-  before_update :prevent_update_if_nickname_exists?
+  before_update :prevent_update_if_nickname_exists
 
   has_many :articles, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.where(email: data['email']).first
-
-    unless user
-      user = User.create(email: data['email'], password: Devise.friendly_token[0,20]) 
+  def self.from_omniauth(auth)
+    user = User.where(email: auth.info.email).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.nickname = auth.info.nickname
     end
-    
-    user
   end
 
   private
@@ -41,18 +37,18 @@ class User < ApplicationRecord
     end
   end
 
-  def nickname_exists?
-    User.where(nickname: self.nickname).any?
+  def should_generate_new_friendly_id?
+    nickname.blank? || self.nickname_changed?
   end
 
-  def prevent_update_if_nickname_exists?
+  def nickname_exists?
+    User.where(nickname: self.nickname).first.present?
+  end
+
+  def prevent_update_if_nickname_exists
     if nickname_exists?
       errors.add :nickname, 'This nickname is already being used. Choose something else.'
       throw :abort
     end
-  end
-
-  def should_generate_new_friendly_id?
-    nickname.blank? || self.nickname_changed?
   end
 end

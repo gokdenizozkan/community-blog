@@ -162,7 +162,6 @@ GEM
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    nanoid (2.0.0)
     net-http (0.4.1)
       uri
     net-imap (0.4.11)
@@ -333,7 +332,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
-  nanoid (= 2.0.0)
   omniauth-github
   omniauth-rails_csrf_protection
   pg (~> 1.1)

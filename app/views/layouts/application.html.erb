@@ -8,12 +8,9 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext" %>
-    
-    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic"> -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" /> -->
-    <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css"> -->
     <%= javascript_importmap_tags %>
+
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -26,11 +23,9 @@
             
             <% if user_signed_in? %>
               <%= link_to current_user.nickname, user_profile_path(current_user), class: 'nav-item' %>
-              <%= link_to "Account Settings", edit_user_registration_path, class: 'nav-item' %>
               <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-item' %>
             <% else %>
-              <%= link_to "Sign Up", new_user_registration_path, class: 'nav-item' %>
-              <%= link_to "Login", new_user_session_path, class: 'nav-item' %>
+              <%= button_to "Sign in with GitHub", omniauth_authorize_path('user', 'github'), data: { turbo: false }, class: 'nav-item' %>
             <% end %>
           </nav>
       </header>

@@ -1,5 +1,11 @@
 <h1><%= @profile_user.nickname %></h1>
 
+<% if @profile_belongs_to_current_user %>
+  <div>
+    <%= link_to "Edit Nickname", edit_user_nickname_path(@profile_user) %>
+  </div>
+<% end %>
+
 <div class="nes-container with-title">
 	<h2 class="title">Published Articles</h2>
 	<%= 'User has no published articles yet.' if @profile_user.articles.empty? %>
