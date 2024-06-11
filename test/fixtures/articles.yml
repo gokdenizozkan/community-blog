@@ -1,11 +1,30 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: articles
+#
+#  id         :bigint           not null, primary key
+#  title      :string
+#  body       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  published  :boolean          default(FALSE)
+#  user_id    :bigint           not null
+#
 
-one:
-  title: MyString
-  body: MyString
-  status: MyString
+valid_article:
+  title: 'The Dawn of Rails'
+  body: 'A deep dive into Ruby on Rails.'
+  published: true
+  user: valid_user
 
-two:
-  title: MyString
-  body: MyString
-  status: MyString
+valid_article_2:
+  title: 'Understanding Active Record'
+  body: 'Exploring the ORM pattern in Rails.'
+  published: false
+  user: valid_user_2
+
+valid_article_not_published:
+  title: 'Re-defining Localization: The True Essence of It'
+  body: 'Localization is the art of creating shared experiences.'
+  published: false
+  user: valid_user

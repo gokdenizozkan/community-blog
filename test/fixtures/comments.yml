@@ -1,11 +1,30 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint           not null
+#  article_id :bigint           not null
+#  body       :string
+#  status     :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
-one:
-  user: one
-  article: one
-  body: MyString
+valid_comment:
+  user: valid_user
+  article: valid_article
+  body: 'Great article!'
+  status: 1
 
-two:
-  user: two
-  article: two
-  body: MyString
+valid_comment_2:
+  user: valid_user_2
+  article: valid_article_2
+  body: 'Looking forward to more!'
+  status: 0
+
+valid_comment_made_to_valid_article_not_published:
+  user: valid_user_2
+  article: valid_article_not_published
+  body: 'What a great definition.'
+  status: 0
