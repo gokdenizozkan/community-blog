@@ -69,6 +69,7 @@ end
 
 gem "devise", "~> 4.9"
 
+gem 'nanoid'
 gem 'friendly_id', '~> 5.5.0'
 
 gem 'active_model_serializers'
