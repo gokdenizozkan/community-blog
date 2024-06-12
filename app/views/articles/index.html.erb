@@ -1,7 +1,7 @@
 <div class="centered-items">
-  <h1 class="centered-text">Articles</h1>
+  <h1 class="centered-text"><%= t('views.article.index.heading') %></h1>
 
-  <%= link_to "Write the very first article!", new_article_path if @articles.empty? %>
+  <%= link_to t('views.article.index.write_article_label'), new_article_path if @articles.empty? %>
   
   <div class="article-cards">
     <%= render partial: 'articles/generate_article_cards', locals: { articles: @articles } %>

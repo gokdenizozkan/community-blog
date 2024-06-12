@@ -1,0 +1,15 @@
+en:
+  views:
+    application:
+      head:
+        title: 'Community Blog by Gökdeniz Özkan'
+      body:
+        nav:
+          home: 'Home'
+          articles: 'Articles'
+          write_article: 'Write Article'
+          logout: 'Logout'
+          sign_in_with_github: 'Sign In with GitHub'
+        footer:
+          copyright_notice: 'All rights are reserved.'
+          project_information: 'Developed by Gökdeniz Özkan as a capstone project for iWallet Ruby on Rails Bootcamp.'

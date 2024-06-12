@@ -1,16 +1,10 @@
 tr:
-  model:
-    article:
-      title: Başlık
-      body: Gövde
-      published: Yayımlandı
-    tag:
-      name: Etiket
-    shared:
-      tag: Etiket
-      tags: Etiketler
-
-  view:
-    article:
-      form:
-        tag_info: Etiketleri virgülle ayırın, ör. dil,ingilizce,etimoloji
+  shared:
+    cta:
+      back: 'Geri'
+      edit: 'Düzenle'
+      destroy: 'Sil'
+      approve: 'Onayla'
+      reject: 'Reddet'
+    confirmation:
+      are_you_sure: 'Emin misin?'

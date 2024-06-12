@@ -1,0 +1,7 @@
+en:
+  views:
+    welcome:
+      index:
+        heading: 'Welcome'
+        write_article_label: 'Write the very first article!'
+        write_your_own_article_label: 'Write your own!'

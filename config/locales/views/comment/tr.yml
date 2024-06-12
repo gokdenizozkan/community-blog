@@ -1,0 +1,11 @@
+en:
+  views:
+    comment:
+      generate_comments_pending_approval:
+        said: 'şöyle dedi'
+      article_comments:
+        heading: 'Yorumlar'
+        no_comments: 'Henüz yorum yapılmadı'
+      approved_comments:
+        heading: 'Onaylanmış Yorumlar'
+        no_comments: 'Henüz yorum yapılmadı'

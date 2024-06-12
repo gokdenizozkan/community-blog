@@ -1,6 +1,6 @@
 <div id="approved-comments" class="nes-container with-title"> 
-  <h3 class="title">Approved Comments</h3>
-  <%= "No comments." if approved_comments.empty? %>
+  <h3 class="title"><%= t('views.comment.approved_comments.heading') %></h3>
+  <%= t('views.comment.approved_comments.no_comments') if approved_comments.empty? %>
 
   <% approved_comments.each_with_index do |comment, i| %>
     <div class="nes-balloon from-<%= i % 2 == 0 ? 'left' : 'right' %>">

@@ -12,15 +12,15 @@
         
         <div id="comment-controls-<%= comment.id %>">
           <% if comment.status.to_sym == :pending %>
-            <%= button_to "Edit", nil, remote: true, class: "nes-btn is-warning", data: {
+            <%= button_to t('shared.cta.edit'), nil, remote: true, class: "nes-btn is-warning", data: {
               controller: 'comments',
               action: 'comments#toggleForm',
               comments_form_param: "comment-edit-form-#{comment.id}",
               comments_body_param: "comment-body-#{comment.id}",
             } %>
-            <%= button_to "Destroy", article_comment_path(comment.article, comment), method: :delete, data: {
+            <%= button_to t('shared.cta.destroy'), article_comment_path(comment.article, comment), method: :delete, data: {
               turbo_method: :delete,
-              turbo_confirm: "Are you sure?"
+              turbo_confirm: t('shared.confirmation.are_you_sure')
             }, class: "nes-btn is-error" %>
           <% end %>
         </div>

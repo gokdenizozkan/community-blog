@@ -1,0 +1,15 @@
+en:
+  views:
+    application:
+      head:
+        title: 'Topluluk Blogu, Geliştiren: Gökdeniz Özkan'
+      body:
+        nav:
+          home: 'Ana Sayfa'
+          articles: 'Makaleler'
+          write_article: 'Makale Yaz'
+          logout: 'Çıkış Yap'
+          sign_in_with_github: 'GitHub ile Giriş Yap'
+        footer:
+          copyright_notice: 'Tüm hâkları saklıdır.'
+          project_information: 'Gökdeniz Özkan tarafından iWallet Ruby on Rails Bootcamp bitirme projesi olarak geliştirildi.'

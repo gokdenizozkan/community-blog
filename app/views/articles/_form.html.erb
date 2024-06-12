@@ -1,6 +1,6 @@
 <%= form_with model: article do |form| %>
   <div>
-    <%= form.label :title %><br>
+    <%= form.label t('models.article.title') %><br>
     <%= form.text_field :title, class: 'nes-input' %>
     <% article.errors.full_messages_for(:title).each do |message| %>
         <p class="notice"><%= message %></p>
@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <%= form.label :body %><br>
+    <%= form.label t('models.article.body') %><br>
     <%= form.rich_text_area :body %><br>
     <% article.errors.full_messages_for(:body).each do |message| %>
         <p class="notice"><%= message %></p>
@@ -16,15 +16,15 @@
   </div>
 
   <div>
-    <%= form.check_box :published %> Published?<br>
+    <%= form.check_box t('models.article.published') %> Published?<br>
     <% article.errors.full_messages_for(:base).each do |message| %>
         <p class="notice"><%= message %></p>
     <% end %>
   </div>
 
   <div>
-    <%= form.label :tags %>
-    <p><%= t 'model.shared.tags' %></p>
+    <%= form.label t('models.article.tags') %>
+    <p><%= t('views.article.tags_info') %></p>
     <%= form.text_field :tags, value: article.tags.map(&:name).join(','), class: 'nes-input' %>
   </div>
 

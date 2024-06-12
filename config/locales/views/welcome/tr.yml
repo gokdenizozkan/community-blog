@@ -1,0 +1,7 @@
+en:
+  views:
+    welcome:
+      index:
+        heading: 'Hoş Geldin'
+        write_article_label: 'İlk makaleyi sen yaz!'
+        write_your_own_article_label: 'Kendi makaleni yaz!'

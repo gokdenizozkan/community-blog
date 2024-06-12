@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Community Blog by Gökdeniz Özkan</title>
+    <title><%= t('views.application.head.title') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,15 +17,15 @@
     <div class="col-container nes-container">
       <header class="section-border">
           <nav class="nav-container">
-            <%= link_to "Home", root_path, class: 'nav-item' %>
-            <%= link_to "Articles", articles_path, class: 'nav-item' %>
-            <%= link_to "Write article!", new_article_path, class: 'nav-item' %>
+            <%= link_to t('views.application.body.nav.home'), root_path, class: 'nav-item' %>
+            <%= link_to t('views.application.body.nav.articles'), articles_path, class: 'nav-item' %>
+            <%= link_to t('views.application.body.nav.write_article'), new_article_path, class: 'nav-item' %>
             
             <% if user_signed_in? %>
               <%= link_to current_user.nickname, user_profile_path(current_user), class: 'nav-item' %>
-              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-item' %>
+              <%= button_to t('views.application.body.nav.logout'), destroy_user_session_path, method: :delete, class: 'nav-item' %>
             <% else %>
-              <%= button_to "Sign in with GitHub", omniauth_authorize_path('user', 'github'), data: { turbo: false }, class: 'nav-item' %>
+              <%= button_to t('views.application.body.nav.sign_in_with_github'), omniauth_authorize_path('user', 'github'), data: { turbo: false }, class: 'nav-item' %>
             <% end %>
           </nav>
       </header>
@@ -72,10 +72,10 @@
 
         <section class="footer-container">
           <p>
-            All rights are reserved.
+            <%= t('views.application.body.footer.copyright_notice') %>
           </p>
           <p>
-            Developed by Gökdeniz Özkan as a capstone project for iWallet Ruby on Rails Bootcamp.
+            <%= t('views.application.body.footer.project_information') %>
           </p>
         </section>
       </footer>

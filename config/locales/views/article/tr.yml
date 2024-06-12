@@ -1,0 +1,28 @@
+tr:
+  views:
+    article:
+      form:
+        tags_info: 'Etiketleri virgülle ayırın, ör. dil,ingilizce,etimoloji'
+      edit:
+        heading: 'Makaleyi Düzenle'
+      index:
+        heading: 'Makaleler'
+        write_article_label: 'İlk makaleyi sen yaz!'
+      new:
+        heading: 'Makale Oluştur'
+      search_results:
+        heading: '%{query} için Arama Sonuçları'
+        write_article_label: 'İlk makaleyi sen yaz!'
+      show:
+        article_owner_label: 'Yazan'
+        article_updated_at_label: 'Son güncelleme'
+        article_tags_label: 'Etiketler'
+        article_settings_heading: 'Makale Seçenekleri'
+        comments_heading: 'Yorumlar'
+        comments_new_comment_heading: 'Yeni Yorum'
+        comments_approved_comments_heading: 'Onaylanmış Yorumlar'
+        comments_my_comments_heading: 'Benim Yorumlarım'
+        comments_comments_pending_approval: 'Onay Bekleyen Yorumlar'
+        see_other_articles: 'Başka makalelere göz at.'
+        be_first_to_comment: 'İlk yorumu sen yaz!'
+        login_to_comment: 'Yorum yazmak için giriş yap.'

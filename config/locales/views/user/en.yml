@@ -1,6 +1,0 @@
-en:
-  models:
-    user:
-      nickname: Nickname
-      email: Email
-      password: Password

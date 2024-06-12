@@ -1,4 +1,11 @@
 en:
-  models:
+  views:
     comment:
-      body: Body
+      generate_comments_pending_approval:
+        said: said
+      article_comments:
+        heading: Comments
+        no_comments: No comments
+      approved_comments:
+        heading: Approved Comments
+        no_comments: No comments

@@ -2,6 +2,27 @@ en:
   views:
     article:
       form:
-        tagging_info: Separate tags with comma, e.g. language,english,etymology
+        tags_info: Separate tags with comma, e.g. language,english,etymology
+      edit:
+        heading: Edit Article
       index:
-        if_articles_empty: Write the very first article!
+        heading: Articles
+        write_article_label: Write the very first article!
+      new:
+        heading: Create Article
+      search_results:
+        heading: Search Results for {query}
+        write_article_label: Write the very first article!
+      show:
+        article_owner_label: Written by
+        article_updated_at_label: Last updated at
+        article_tags_label: Tags
+        article_settings_heading: Article Settings
+        comments_heading: Comments
+        comments_new_comment_heading: New Comment
+        comments_approved_comments_heading: Approved Comments
+        comments_my_comments_heading: My Comments
+        comments_comments_pending_approval: Comments Pending Approval
+        see_other_articles: See other articles.
+        be_first_to_comment: Be first to comment!
+        login_to_comment: Login to comment.

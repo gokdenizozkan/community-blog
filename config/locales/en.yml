@@ -27,4 +27,12 @@
 #       "yes": yup
 #       enabled: "ON"
 en:
-  hello: Hello world
+  shared:
+    cta:
+      back: Back
+      edit: Edit
+      destroy: Destroy
+      approve: Approve
+      reject: Reject
+    confirmation:
+      are_you_sure: Are you sure?
