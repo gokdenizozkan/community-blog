@@ -20,7 +20,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to tag_url(@tag), notice: "Tag was successfully created." }
+        format.html { redirect_to tag_url(@tag), notice: I18n.t('shared.messages.successfuly.created', resource: I18n.t('activerecord.models.tag')) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -30,7 +30,7 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update tag_params
-        format.html { redirect_to tag_url(@tag), notice: "Tag was successfully updated." }
+        format.html { redirect_to tag_url(@tag), notice: I18n.t('shared.messages.successfuly.updated', resource: I18n.t('activerecord.models.tag')) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -41,7 +41,7 @@ class TagsController < ApplicationController
     @tag.destroy
 
     respond_to do |format|
-      format.html { redirect_to tags_url, notice: "Tag was successfully destroyed." }
+      format.html { redirect_to tags_url, notice: I18n.t('shared.messages.successfuly.destroyed', resource: I18n.t('activerecord.models.tag')) }
     end
   end
 

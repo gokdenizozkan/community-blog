@@ -29,8 +29,16 @@
             <% end %>
             
             <div>
-              <%= link_to 'İngilizceye Geç', url_for(locale: 'en') if I18n.locale == :tr %>
-              <%= link_to 'Switch to Turkish', url_for(locale: 'tr') if I18n.locale == :en %>
+              <%= link_to 'İngilizceye Geç', url_for(locale: 'en'), remote: true, data: {
+                controller: 'localtime',
+                action: 'localtime#switchLocale',
+                localtime_locale_param: I18n.locale.to_s
+              } if I18n.locale == :tr %>
+              <%= link_to 'Switch to Turkish', url_for(locale: 'tr'), remote: true, data: {
+                controller: 'localtime',
+                action: 'localtime#switchLocale',
+                localtime_locale_param: I18n.locale.to_s
+              } if I18n.locale == :en %>
             </div>
           </nav>
       </header>

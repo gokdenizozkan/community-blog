@@ -27,4 +27,4 @@ tr:
         be_first_to_comment: 'İlk yorumu sen yaz!'
         login_to_comment: 'Yorum yazmak için giriş yap.'
       search:
-        search_button: Ara
+        search_button: 'Ara'

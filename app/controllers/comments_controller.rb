@@ -24,9 +24,9 @@ class CommentsController < ApplicationController
 	def update
 		respond_to do |format|
 			if @comment.update comment_params
-				format.html { redirect_to article_url @article, notice: 'Comment has been updated.' }
+				format.html { redirect_to article_url @article, notice: I18n.t('shared.messages.successfuly.created', resource: I18n.t('activerecord.models.comment')) }
 			else
-				format.html { redirect_to article_url @article, alert: 'Comment was not updated.' }
+				format.html { redirect_to article_url @article, alert: I18n.t('shared.messages.successfuly.updated', resource: I18n.t('activerecord.models.comment')) }
 			end
 		end
 	end

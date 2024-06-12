@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
 
     respond_to do | format |
       if @article.save
-        format.html { redirect_to article_url(@article), notice: "Article created successfuly." }
+        format.html { redirect_to article_url(@article), notice: I18n.t('shared.messages.successfuly.created', resource: I18n.t('activerecord.models.article')) }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
     create_or_delete_articles_tags(@article, params[:article][:tags])
     respond_to do | format |
       if @article.update(article_params.except(:tags))
-        format.html { redirect_to article_url(@article), notice: "Article updated successfuly." }
+        format.html { redirect_to article_url(@article), notice:I18n.t('shared.messages.successfuly.updated', resource: I18n.t('activerecord.models.article')) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     respond_to do | format |
-      format.html { redirect_to articles_url, notice: "Article deleted successfuly." }
+      format.html { redirect_to articles_url, notice: I18n.t('shared.messages.successfuly.destroyed', resource: I18n.t('activerecord.models.article')) }
     end
   end
 

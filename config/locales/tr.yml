@@ -8,7 +8,11 @@ tr:
       reject: 'Reddet'
     confirmation:
       are_you_sure: 'Emin misin?'
-
+    messages:
+      successfuly:
+        created: '%{resource} oluşturuldu.'
+        destroyed: '%{resource} silindi.'
+        updated: '%{resource} güncellendi.'
   activerecord:
     errors:
       messages:

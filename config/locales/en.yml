@@ -36,6 +36,12 @@ en:
       reject: Reject
     confirmation:
       are_you_sure: Are you sure?
+    messages:
+      successfuly:
+        created: 'Created %{resource} successfully.'
+        destroyed: 'Destroyed %{resource} successfully.'
+        updated: 'Updated %{resource} successfully.'
+
   activerecord:
     errors:
       messages:
