@@ -28,3 +28,9 @@ valid_article_not_published:
   body: 'Localization is the art of creating shared experiences.'
   published: false
   user: valid_user
+
+valid_article_published:
+  title: 'Understanding Git: From core concepts to advanced commands'
+  body: 'To merge or not to merge, that is the question.'
+  published: true
+  user: valid_user

@@ -53,7 +53,10 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy!
+    @article.comments.where.not(status: :pending).each do |comment|
+      comment.delete
+    end
+    @article.destroy
 
     respond_to do | format |
       format.html { redirect_to articles_url, notice: "Article deleted successfuly." }
