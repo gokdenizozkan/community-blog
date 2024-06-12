@@ -1,0 +1,17 @@
+en:
+  views:
+    user:
+      profile:
+        show:
+          edit_nickname: 'Edit Nickname'
+          articles_heading: 'Published Articles'
+          no_published_articles: 'User has no published articles'
+          comments_heading: 'Comments'
+          comments_received_comments: 'Received Comments'
+          comments_info_only_visibile_to_you: 'only visible to you'
+          comments_received_comment_management_heading: 'Received Comment Management'
+          comments_my_comments_heading: 'My Comments'
+          comments_comments_i_made_to_heading: 'Comments I Made to %{user}'
+          articles_draft_articles_heading: 'Draft Articles'
+        edit_nickname:
+          heading: 'Edit Nickname'

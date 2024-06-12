@@ -16,7 +16,7 @@
   </div>
 
   <div>
-    <%= form.check_box t('models.article.published') %> Published?<br>
+    <%= form.check_box :published %> <%= t('models.article.published') %>?<br>
     <% article.errors.full_messages_for(:base).each do |message| %>
         <p class="notice"><%= message %></p>
     <% end %>
@@ -24,7 +24,7 @@
 
   <div>
     <%= form.label t('models.article.tags') %>
-    <p><%= t('views.article.tags_info') %></p>
+    <p><%= t('views.article.form.tags_info') %></p>
     <%= form.text_field :tags, value: article.tags.map(&:name).join(','), class: 'nes-input' %>
   </div>
 

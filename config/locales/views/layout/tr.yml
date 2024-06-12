@@ -1,4 +1,4 @@
-en:
+tr:
   views:
     application:
       head:
@@ -11,5 +11,5 @@ en:
           logout: 'Çıkış Yap'
           sign_in_with_github: 'GitHub ile Giriş Yap'
         footer:
-          copyright_notice: 'Tüm hâkları saklıdır.'
+          copyright_notice: 'Tüm hakları saklıdır.'
           project_information: 'Gökdeniz Özkan tarafından iWallet Ruby on Rails Bootcamp bitirme projesi olarak geliştirildi.'

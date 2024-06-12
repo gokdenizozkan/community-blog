@@ -2,13 +2,13 @@
 
 <% if @profile_belongs_to_current_user %>
   <div>
-    <%= link_to "Edit Nickname", edit_user_nickname_path(@profile_user) %>
+    <%= link_to t('views.user.profile.show.edit_nickname'), edit_user_nickname_path(@profile_user) %>
   </div>
 <% end %>
 
 <div class="nes-container with-title">
-	<h2 class="title">Published Articles</h2>
-	<%= 'User has no published articles yet.' if @profile_user.articles.empty? %>
+	<h2 class="title"><%= t('views.user.profile.show.articles_heading') %></h2>
+	<%= t('views.user.profile.show.no_published_articles') if @profile_user.articles.empty? %>
 
 	<% @profile_user.articles.published.each_with_index do |article, i| %>
 		<div class="nes-container <%= 'is-dark' if i % 2 == 0 %>">
@@ -18,10 +18,10 @@
 </div>
 
 <div id="comments" class="nes-container with-title"> 
-  <h2 class="title">Comments</h2>
+  <h2 class="title"><%= t('views.user.profile.show.comments_heading') %></h2>
 
   <div class="nes-container with-title">
-    <h3 class="title">Received Comments</h3>
+    <h3 class="title"><%= t('views.user.profile.show.comments_received_comments_heading') %></h3>
 
     <% @profile_user.articles.each do |article| %>
       <% article.comments.not_pending.each_with_index do |comment, i| %>
@@ -35,7 +35,7 @@
           <p><b><%= comment.user.nickname %></b>: <%= comment.body %></p>
 
           <% if @profile_belongs_to_current_user && comment.status.to_sym == :rejected %>
-            <p><b><%= comment.status%></b>, only visible to you.</p>
+            <p><b><%= comment.status%></b>, <%= t('views.user.profile.show.comments_info_only_visibile_to_you') %></p>
           <% end %>
         </div>
       <% end %>
@@ -46,14 +46,14 @@
 
     <% if @pending_comments.any? %>
       <div class="nes-container with-title">
-        <h3 class="title">Received Comment Management</h3>
+        <h3 class="title"><%= t('views.user.profile.show.comments_received_comment_management_heading') %></h3>
         <%= render partial: 'comments/generate_comments_pending_approval', locals: { pending_comments: @pending_comments } %>
       </div>
     <% end %>
 
     <% if @profile_user.comments.any? %>
       <div class="nes-container with-title">
-        <h3 class="title">My Comments</h3>
+        <h3 class="title"><%= t('views.user.profile.show.comments_my_comments_heading') %></h3>
         <%= render partial: 'comments/generate_comments', locals: { comments: @profile_user.comments, allow_comment_controls: true } %>
       </div>
     <% end %>
@@ -62,7 +62,7 @@
 
     <% if user_signed_in? && @comments_of_current_user.any? %>
       <div class="nes-container with-title">
-        <h3 class="title">Comments I Made to <%= @profile_user.nickname.capitalize %></h3>
+        <h3 class="title"><%= t('views.user.profile.show.comments_comments_i_made_to_heading', user: @profile_user.nickname.capitalize) %></h3>
         <%= render partial: 'comments/generate_comments', locals: { comments: @comments_of_current_user, allow_comment_controls: true } %>
       </div>
     <% end %>
@@ -74,7 +74,7 @@
 
   <% if @profile_user.articles.not_published.any? %>
   	<div class="nes-container with-title is-dark">
-  		<h2 class="title">Draft Articles</h2>
+  		<h2 class="title"><%= t('views.user.profile.show.articles_draft_articles_heading') %></h2>
 
   		<% @profile_user.articles.not_published.each do |article| %>
   			<div class="nes-container is-dark">

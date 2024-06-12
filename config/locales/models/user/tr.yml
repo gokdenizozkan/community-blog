@@ -1,0 +1,6 @@
+tr:
+  models:
+    user:
+      nickname: 'Rumuz'
+      email: 'E-posta'
+      password: 'Şifre'

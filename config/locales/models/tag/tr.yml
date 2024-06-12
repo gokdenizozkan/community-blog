@@ -1,4 +1,4 @@
 tr:
   models:
     tag:
-      name: Name
+      name: 'İsim'
