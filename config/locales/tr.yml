@@ -16,6 +16,29 @@ tr:
         restrict_dependent_destroy:
           has_one: 'Bağlı bir kayıt %{record} bulunduğu için kayıt silinemedi'
           has_many: 'Bağlı kayıtlar %{record} bulunduğu için kayıt silinemedi'
+    models:
+      article: 'Makale'
+      comment: 'Yorum'
+      tag: 'Etiket'
+      tagging: 'Etiketleme'
+      user: 'Kullanıcı'
+      vote: 'Oy'
+    attributes:
+      article:
+        title: 'Başlık'
+        body: 'Gövde'
+        published: 'Paylaşıldı'
+        tags: 'Etiketler'
+      comment:
+        body: 'Gövde'
+      tag:
+        name: 'İsim'
+      user:
+        nickname: 'Rumuz'
+        email: 'E-posta'
+        password: 'Şifre'
+      vote:
+        up: 'Artı Oy'
   date:
     abbr_day_names:
     - Pzr

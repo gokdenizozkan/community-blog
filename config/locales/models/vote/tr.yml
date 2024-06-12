@@ -1,5 +1,0 @@
-tr:
-  models:
-    vote:
-      up: 'Artı oy'
-      down: 'Eksi oy'

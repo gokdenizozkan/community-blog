@@ -36,7 +36,6 @@ en:
       reject: Reject
     confirmation:
       are_you_sure: Are you sure?
-
   activerecord:
     errors:
       messages:
@@ -44,6 +43,29 @@ en:
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists
           has_many: Cannot delete record because dependent %{record} exist
+    models:
+      article: 'Article'
+      comment: 'Comment'
+      tag: 'Tag'
+      tagging: 'Tagging'
+      user: 'User'
+      vote: 'Vote'
+    attributes:
+      article:
+        title: 'Title'
+        body: 'Body'
+        published: 'Published'
+        tags: 'Tags'
+      comment:
+        body: 'Body'
+      tag:
+        name: 'Name'
+      user:
+        nickname: 'Nickname'
+        email: 'Email'
+        password: 'Password'
+      vote:
+        up: 'Upvote'
   date:
     abbr_day_names:
     - Sun

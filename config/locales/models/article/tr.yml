@@ -1,7 +1,0 @@
-tr:
-  models:
-    article:
-      title: 'Başlık'
-      body: 'Gövde'
-      published: 'Paylaşıldı'
-      tags: 'Etiketler'

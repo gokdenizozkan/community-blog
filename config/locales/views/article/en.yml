@@ -26,3 +26,5 @@ en:
         see_other_articles: See other articles.
         be_first_to_comment: Be first to comment!
         login_to_comment: Login to comment.
+      search:
+        search_button: Search

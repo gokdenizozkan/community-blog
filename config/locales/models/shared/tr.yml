@@ -1,5 +1,0 @@
-tr:
-  models:
-    shared:
-      created_at: 'Oluşturma tarihi'
-      updated_at: 'Güncellenme tarihi'

@@ -26,3 +26,5 @@ tr:
         see_other_articles: 'Başka makalelere göz at.'
         be_first_to_comment: 'İlk yorumu sen yaz!'
         login_to_comment: 'Yorum yazmak için giriş yap.'
+      search:
+        search_button: Ara
