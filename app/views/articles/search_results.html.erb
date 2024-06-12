@@ -1,5 +1,5 @@
 <div class="centered-items">
-  <h1 class="centered-text"><%= t('views.article.search_results.heading'), query: query) %></h1>
+  <h1 class="centered-text"><%= t('views.article.search_results.heading', query: query) %></h1>
 
   <%= link_to t('views.article.search_results.write_article_label'), new_article_path if @articles.empty? %>
   

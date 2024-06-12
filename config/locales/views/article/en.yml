@@ -11,7 +11,7 @@ en:
       new:
         heading: Create Article
       search_results:
-        heading: Search Results for {query}
+        heading: Search Results for %{query}
         write_article_label: Write the very first article!
       show:
         article_owner_label: Written by
