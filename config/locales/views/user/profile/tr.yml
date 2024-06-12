@@ -7,7 +7,7 @@ tr:
           articles_heading: 'Paylaşılan Makaleler'
           no_published_articles: 'Kullanıcı henüz makale paylaşmadı'
           comments_heading: 'Yorumlar'
-          comments_received_comments: 'Gelen Yorumlar'
+          comments_received_comments_heading: 'Gelen Yorumlar'
           comments_info_only_visibile_to_you: 'yalnızca sana görünür.'
           comments_received_comment_management_heading: 'Gelen Yorum Yönetimi'
           comments_my_comments_heading: 'Yaptığım Yorumlar'

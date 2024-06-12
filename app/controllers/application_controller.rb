@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  around_action :switch_locale
+  before_action :set_locale
 
   def authorize_against_current_user(user_id)
     unless current_user.id == user_id.to_i
@@ -7,8 +7,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 end

@@ -11,5 +11,5 @@
     <%= render partial: 'articles/generate_article_cards', locals: { articles: @published_articles } %>
   </div>
 
-  <%= button_to t('views.welcome.index.write_your_own_article_label'), new_article_path, class: 'nes-btn' if user_signed_in? && @published_articles.any? %>
+  <%= link_to t('views.welcome.index.write_your_own_article_label'), new_article_path, class: 'nes-btn' if user_signed_in? && @published_articles.any? %>
 </div>
