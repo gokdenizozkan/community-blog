@@ -20,7 +20,7 @@
             <%= link_to t('views.application.body.nav.home'), root_path, class: 'nav-item' %>
             <%= link_to t('views.application.body.nav.articles'), articles_path, class: 'nav-item' %>
             <%= link_to t('views.application.body.nav.write_article'), new_article_path, class: 'nav-item' %>
-            
+
             <% if user_signed_in? %>
               <%= link_to current_user.nickname, user_profile_path(current_user), class: 'nav-item' %>
               <%= button_to t('views.application.body.nav.logout'), destroy_user_session_path, method: :delete, class: 'nav-item' %>

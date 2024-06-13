@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :authenticate_user!, except: [:index, :show, :search] 
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :set_user_is_current_user, only: [:show]
   before_action -> { authorize_against_current_user @article.user.id }, only: [:edit, :update, :destroy]

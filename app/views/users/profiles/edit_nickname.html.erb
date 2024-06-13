@@ -2,7 +2,7 @@
 
 <%= form_with model: @profile_user, url: update_user_nickname_path do |form| %>
   <div>
-    <%= form.label t('models.user.nickname') %><br>
+    <%= form.label :nickname %><br>
     <%= form.text_field :nickname, class: 'nes-input' %>
     <% @profile_user.errors.full_messages_for(:nickname).each do |message| %>
         <p class="notice"><%= message %></p>

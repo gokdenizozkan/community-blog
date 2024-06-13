@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     skip: [:sessions, :registrations]
 
   devise_scope :user do
-    get "/users", to: "devise/sessions#new", as: :new_user_session
     post "/users/sign_in", to: "devise/sessions#create", as: :user_session
     delete "/users/sign_out", to: "devise/sessions#destroy", as: :destroy_user_session
   end
