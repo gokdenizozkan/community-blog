@@ -11,16 +11,24 @@
 #  user_id    :bigint           not null
 #
 class ArticleSerializer < ActiveModel::Serializer
-  attributes :title, :status, :published
+  attribute :title
   attribute :body, key: :content
-
-  has_many :tags
+  attributes :status, :published
 
   has_many :comments do
     @object.comments.approved
   end
+  has_many :tags
+
+  def body
+    @object.body.to_plain_text
+  end
 
   def status
     @object.published ? :published : :draft
+  end
+
+  def published
+    @object.updated_at
   end
 end
