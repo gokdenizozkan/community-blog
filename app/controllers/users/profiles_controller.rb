@@ -26,7 +26,7 @@ class Users::ProfilesController < ApplicationController
     redirect_to root_path unless @profile_belongs_to_current_user
     
     if @profile_user.nickname == user_params[:nickname] || @profile_user.update(user_params)
-      redirect_to user_profile_path(@profile_user), notice: I18n.t('shared.messages.successfuly.updated', resource: I18n.t('activerecord.attributes.article.nickname'))
+      redirect_to user_profile_path(@profile_user), notice: I18n.t('shared.messages.successfuly.updated', resource: I18n.t('activerecord.attributes.user.nickname'))
     else
       render :edit_nickname, status: :unprocessable_entity
     end
