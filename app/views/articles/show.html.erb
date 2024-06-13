@@ -53,7 +53,7 @@
       
       <div id="new-comment" class="nes-container is-dark with-title">
         <h3 class="title"><%= t('views.article.show.comments_new_comment_heading') %></h3>
-        <%= link_to t('views.article.show.login_to_comment'), new_user_session_path unless user_signed_in? %>
+        <%= button_to t('views.article.show.login_to_comment'), omniauth_authorize_path('user', 'github'), data: { turbo: false }, class: 'nav-item' unless user_signed_in? %>
         
         <%= render partial: "comments/form", locals: { article: @article, comment: @article.comments.build } if user_signed_in? %>
       </div>
