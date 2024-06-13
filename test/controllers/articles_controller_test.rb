@@ -16,7 +16,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show article' do
-    get article_url(@article)
+    get article_url('tr', @article)
     assert_response :success
   end
 
@@ -33,15 +33,15 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update article if it is not published' do
-    patch article_url(@article_not_published), params: { article: { title: 'Updated Title', tags: "" } }
-    assert_redirected_to article_url(@article_not_published)
+    patch article_url('tr', @article_not_published), params: { article: { title: 'Updated Title', tags: "" } }
+    assert_redirected_to article_url('tr', @article_not_published)
     @article_not_published.reload
     assert_equal 'Updated Title', @article_not_published.title
   end
 
   test 'should destroy article if it is not published' do
     assert_difference('Article.count', -1) do
-      delete article_url(@article_not_published)
+      delete article_url('tr', @article_not_published)
     end
     assert_redirected_to articles_url
   end
