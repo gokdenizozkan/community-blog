@@ -1,12 +1,22 @@
 # Community Blog
 
-A community blog to share highs and lows of your development journey. This project is developed for iWallet Ruby on Rails bootcamp capstone project.
+A community blog to share highs and lows of your development journey. This project is developed for iWallet Ruby on Rails bootcamp capstone project.  
+Live here at: https://community-blog.gokdenizozkan.com/  
+  
+<a href="https://youtu.be/62A_EPFW33k"><img alt="kısa tanıtım 4. ödev ister youtube thumbnail" src=".github/odev-tanitimi-4-thumbnail.gif" width="600px"></a>
 
-<a href="https://youtu.be/-Qccqw0K3Zw"><img alt="kısa tanıtım 3. ödev ister youtube thumbnail" src=".github/odev-tanitimi-3-thumbnail.gif" width="600px"></a>
-
-^ A quick look to all criteria asked in Homework #3, watch here: [https://youtu.be/-Qccqw0K3Zw](https://youtu.be/-Qccqw0K3Zw)
+^ A quick look to all criteria asked in Homework #4, watch here: [https://youtu.be/62A_EPFW33k](https://youtu.be/62A_EPFW33k)
 
 ## Features
+
+v1.0.0
+- Tests: 6 controller & 6 model tests.
+- APIs: `/api/v1/articles` and `/api/v1/articles/1`
+- Turkish localization, full coverage! (including local-time gem)
+- Tags have their own page displaying related & published articles (it was there in v0.9.0)
+- Search bar that is capable of looking up titles and tags.
+- GitHub Sign In Only
+
 v0.9.0
 - User authentication & authorization
 - Changeable nicknames
@@ -104,3 +114,19 @@ classDiagram
 ## 3rd Parties
 
 Turkish Localization for Devise was taken from https://gist.github.com/cihad/1564962
+
+## Old Visual Representations
+
+3rd Homework:  
+  
+<a href="https://youtu.be/-Qccqw0K3Zw"><img alt="kısa tanıtım 3. ödev ister youtube thumbnail" src=".github/odev-tanitimi-3-thumbnail.gif" width="600px"></a>  
+  
+2nd Homework:  
+
+![homework 2](".github/demo-hw2.gif")
+  
+1st Homework:  
+
+![homework 1](".github/demo.gif")
+
+
